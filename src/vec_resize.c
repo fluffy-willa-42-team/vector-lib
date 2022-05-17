@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 16:31:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:29:07 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,18 @@ t_vec	*vecResizeStrict(t_vec *vec, int len){
 		return (NULL);
 	if (len < vec->len)
 		return (vec);
+	
 	newBuffer = malloc((vec->len + len) * vec->size);
 	if (!newBuffer)
 		return (NULL);
 	ft_memset(newBuffer, 0, (vec->len + len) * vec->size);
 	ft_memmove(newBuffer, vec->buffer, vec->len * vec->size);
-	vec->len += len; 
+	vec->len += len;
+	free(vec->buffer);
+	vec->buffer = newBuffer;
 	return (vec);
 }
 
 t_vec	*vecResize(t_vec *vec){
-	return (vecResizeStrict(vec, vec->len + VECTOR_SIZE));
+	return (vecResizeStrict(vec, VECTOR_SIZE));
 }
