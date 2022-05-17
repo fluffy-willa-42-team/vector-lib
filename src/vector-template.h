@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector-lib.h                                       :+:      :+:    :+:   */
+/*   vector-template.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 16:11:27 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/17 16:08:49 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_LIB_H
-# define VECTOR_LIB_H
+#ifndef VECTOR_TEMPLATE_H
+# define VECTOR_TEMPLATE_H
 
 /* ************************************************************************** */
 
-#include "vector-template.h"
+# ifndef VECTOR_SIZE
+#  define VECTOR_SIZE 64
+# endif
+
+/* ************************************************************************** */
+
+typedef struct s_vec
+{
+	int		len;
+	int		size;
+	char	*buffer;
+}	t_vec;
 
 /* ************************************************************************** */
 

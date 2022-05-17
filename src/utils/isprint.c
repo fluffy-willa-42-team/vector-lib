@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_init.c                                         :+:      :+:    :+:   */
+/*   isprint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 16:10:11 by awillems         ###   ########.fr       */
+/*   Created: 2021/10/01 14:41:44 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/17 16:05:12 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector-template.h"
-
-static t_vec	vecEmpty(void)
+/**
+ * @brief Check if the given character is printable.
+ * 
+ * @param c Any char from the ascii table.
+ * @return Boolean whether the condition is true or false.
+ */
+int	ft_isprint(int c)
 {
-	t_vec	res;
-
-	res.buffer = 0;
-	res.len = 0;
-	res.size = 0;
-	return (res);
-}
-
-t_vec vecInitStrict(int size){
-	t_vec	res;
-	
-	res = vecEmpty();
-	(void) size;
-	return (res);
-}
-
-t_vec vecInit(void){
-	return (vecInitStrict(VECTOR_SIZE));
+	if (c >= ' ' && c <= '~')
+		return (1);
+	return (0);
 }

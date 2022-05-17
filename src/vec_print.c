@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_init.c                                         :+:      :+:    :+:   */
+/*   vec_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 16:10:11 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/17 15:58:32 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/17 16:12:31 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+
 #include "vector-template.h"
 
-static t_vec	vecEmpty(void)
-{
-	t_vec	res;
+int	ft_isprint(int c);
 
-	res.buffer = 0;
-	res.len = 0;
-	res.size = 0;
-	return (res);
-}
+void	vecPrint(t_vec vec){
+	int	i;
 
-t_vec vecInitStrict(int size){
-	t_vec	res;
-	
-	res = vecEmpty();
-	(void) size;
-	return (res);
-}
-
-t_vec vecInit(void){
-	return (vecInitStrict(VECTOR_SIZE));
+	if (!vec.buffer)
+		return ;
+	i = 0;
+	while (i < vec.len){
+		if (ft_isprint(vec.buffer[i]))
+			write(1, &vec.buffer[i], 1);
+		else
+			write(1, ".", 1);
+		i++;
+	}
+	write(1, "/n", 1);
 }
