@@ -6,10 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:16 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 15:37:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:10:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "vector-lib.h"
 
 int main(void){
