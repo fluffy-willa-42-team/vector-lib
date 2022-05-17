@@ -6,12 +6,12 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 16:12:44 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:20:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector-template.h"
 
-void	vecFill(void){
-	return ;
+t_vec	*vecFill(t_vec *vec){
+	return (vec);
 }
