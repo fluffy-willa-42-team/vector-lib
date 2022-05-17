@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 19:24:18 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:52:12 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 t_vec	vecInit(int size);
 t_vec	*vecResize(t_vec *vec);
-t_vec	*vecFill(t_vec *vec);
+t_vec	*vecFill(t_vec *vec, int option, ...);
 void	vecPrint(t_vec vec);
 void	vecDelete(t_vec *vec);
 
