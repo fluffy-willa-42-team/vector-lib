@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vec_delete.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:34:16 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 19:28:52 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/17 19:22:33 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/17 19:24:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector-lib.h"
+#include "vector-template.h"
+#include <stdlib.h>
 
-int main(void){
-	t_vec	vec = vecInit(sizeof(char));
-
-	vecPrint(vec);
-	printf("%d\n", vec.len);
-
-	printf("\n");
-	vecResize(&vec);
-
-	vecPrint(vec);
-
-	printf("%d\n", vec.len);
-	
-	vecDelete(&vec);
-	return (0);
+void	vecDelete(t_vec *vec){
+	vec->len = 0;
+	free(vec->buffer);
 }
