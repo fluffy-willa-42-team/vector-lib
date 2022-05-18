@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/17 19:29:07 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/18 09:25:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ t_vec	*vecResizeStrict(t_vec *vec, int len){
 
 	if (!vec)
 		return (NULL);
-	if (len < vec->len)
-		return (vec);
 	
 	newBuffer = malloc((vec->len + len) * vec->size);
 	if (!newBuffer)
@@ -37,5 +35,5 @@ t_vec	*vecResizeStrict(t_vec *vec, int len){
 }
 
 t_vec	*vecResize(t_vec *vec){
-	return (vecResizeStrict(vec, VECTOR_SIZE));
+	return (vecResizeStrict(vec, vec->rate));
 }
