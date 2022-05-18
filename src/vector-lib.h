@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 09:24:55 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:00:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 /* ************************************************************************** */
 
-t_vec	vecInit(int size, int rate);
+t_vec	vecInit();
 void	vecDelete(t_vec *vec);
 
 int	v_getLen(t_vec vec);
