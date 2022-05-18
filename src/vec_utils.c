@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector-template.h                                  :+:      :+:    :+:   */
+/*   vec_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 09:07:06 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/18 08:58:53 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/18 09:02:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_TEMPLATE_H
-# define VECTOR_TEMPLATE_H
+#include "vector-lib.h"
 
-# define V_DEFAULT_RATE	64
+int v_getLen(t_vec vec){
+	return (vec.len);
+}
 
-# define V_DEFAULT		0
-# define V_SEP			0b0001
-# define V_MULTI_SEP	0b0010
-# define V_MULTIPLE		0b0100
+int v_getSize(t_vec vec){
+	return (vec.size);
+}
 
-typedef struct s_vec
-{
-	int		len;
-	int		size;
-	int		rate;
-	char	*buffer;
-}	t_vec;
-
-#include <stdio.h>
-
-#endif
+int v_getRate(t_vec vec){
+	return (vec.rate);
+}
