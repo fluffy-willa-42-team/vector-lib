@@ -6,16 +6,16 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 12:24:16 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:32:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector-template.h"
+#include "vector_template.h"
 
-t_vec	*vecResize(t_vec *vec);
-t_vec	*vecResizeStrict(t_vec *vec, int len);
+t_vec	*vec_resize(t_vec *vec);
+t_vec	*vec_resize_strict(t_vec *vec, int len);
 
-static t_vec	vecEmpty(int size, int rate)
+static t_vec	vec_empty(int size, int rate)
 {
 	t_vec	res;
 
@@ -34,13 +34,13 @@ static t_vec	vecEmpty(int size, int rate)
  * @param rate 
  * @return t_vec 
  */
-t_vec vecInitStrict(int len, int size, int rate){
+t_vec	vec_init_strict(int len, int size, int rate)
+{
 	t_vec	res;
-	
-	res = vecEmpty(size, rate);
-	
-	if (!vecResizeStrict(&res, len))
-		return (vecEmpty(size, rate));
+
+	res = vec_empty(size, rate);
+	if (!vec_resize_strict(&res, len))
+		return (vec_empty(size, rate));
 	return (res);
 }
 
@@ -49,6 +49,7 @@ t_vec vecInitStrict(int len, int size, int rate){
  * 
  * @return t_vec 
  */
-t_vec vecInit(){
-	return (vecInitStrict(V_DEFAULT_RATE, sizeof(char), V_DEFAULT_RATE));
+t_vec	vec_init(void)
+{
+	return (vec_init_strict(V_DEFAULT_RATE, sizeof(char), V_DEFAULT_RATE));
 }
