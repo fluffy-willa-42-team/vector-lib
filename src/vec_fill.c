@@ -6,14 +6,17 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 12:20:30 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:32:52 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "vector-template.h"
+#include "vector_template.h"
+#include <unistd.h>
 
 size_t	ft_strlen(const char *s);
+void	*ft_memmove(void *dst, const void *src, size_t len);
+void	*ft_memset(void *b, int c, size_t len);
 
 typedef struct s_v_option
 {
@@ -26,46 +29,65 @@ typedef struct s_v_option
 	int		nb;
 }	t_v_option;
 
-static t_v_option initOption(int optionRaw, va_list args){
+static t_v_option	init_option(int optionRaw, va_list args)
+{
 	t_v_option	option;
 
-	option.raw		 = optionRaw;
-	option.start	 = 0;
-	option.sep		 = (option.raw & V_SEP)		  ? va_arg(args, char *) : NULL;
-	option.multi_sep = (option.raw & V_MULTI_SEP) ? va_arg(args, char *) : NULL;
-	option.nb		 = (option.raw & V_MULTIPLE)  ? va_arg(args, int)	 : 0;
-	option.sep_len			= ft_strlen(option.sep);
-	option.multi_sep_len	= ft_strlen(option.multi_sep);
+	option.raw = optionRaw;
+	option.sep = NULL;
+	option.multi_sep = NULL;
+	option.nb = 1;
+	if (option.raw & V_SEP)
+		option.sep = va_arg(args, char *);
+	if (option.raw & V_MULTI_SEP)
+		option.multi_sep = va_arg(args, char *);
+	if (option.raw & V_MULTIPLE)
+		option.nb = va_arg(args, int);
+	option.sep_len = ft_strlen(option.sep);
+	option.multi_sep_len = ft_strlen(option.multi_sep);
 	return (option);
 }
 
+/**
+ * @brief Get the first char we can write to in the vec.
+ * 
+ * @param vec The given vec.
+ * @return int The index.
+ */
+static int	get_start_vec(t_vec *vec)
+{
+	int	i;
 
-int	get_start_vec(t_vec *vec, t_v_option option){
-
-	int len_sep = (option.raw & V_SEP) ? option.sep_len + 1 : 1;
-
-	int i = 0;
-	while (i < vec->len && !vec->buffer[vec->len - 1 - i])
-		i++;
-	return (i + len_sep);
+	i = vec->len - 1;
+	while (i >= 0 && vec->buffer[i] == 0)
+		i--;
+	if (i == -1)
+		return (0);
+	return (i + 1);
 }
 
-
-
 /**
- * vecFill(vec, V_DEFAULT, string)
- * vecFill(vec, V_SEP, separateur, string)
+ * @brief Get the of the str to be writen in the buffer without exceeding.
  * 
- * vecFill(vec, V_MULTIPLE, number, string, ...)
- * vecFill(vec, V_MULTIPLE | V_SEP, separateur, number, string, ...)
- * vecFill(vec, V_MULTIPLE | V_SEP | V_MULTI_SEP, separateur, separateur, number, string, ...)
- * 
- * fill(hello)
- * fill(world)
- * [ , /]
- * 
- * [hello world.........]
+ * @param args va_list.
+ * @param option options of the fill.
+ * @param str The string to be added.
+ * @return int The length of the string to be written.
  */
+static int	get_len_of_fill(va_list args, int option, char *str)
+{
+	int	len_of_str;
+	int	res;
+
+	len_of_str = ft_strlen(str);
+	if (option & V_NOT_NULL_TERM)
+		res = va_arg(args, int);
+	else
+		res = len_of_str;
+	if (res > len_of_str)
+		return (len_of_str);
+	return (res);
+}
 
 /**
  * @brief Add string(s) to a the given vector.
@@ -76,16 +98,31 @@ int	get_start_vec(t_vec *vec, t_v_option option){
  * @param ... 
  * @return t_vec* 
  */
-t_vec	*vecFill(t_vec *vec, int option, ...){
-	va_list	args;
-	t_v_option v_option;
-	
-	printf("%d\n", vec->len);
-	va_start(args, option);
-	v_option = initOption(option, args);
-	printf("%s | %s | %d\n", v_option.sep, v_option.multi_sep, v_option.nb);
-	v_option.start = get_start_vec(vec, v_option);
+t_vec	*vec_fill(t_vec *vec, int option, ...)
+{
+	va_list		args;
+	t_v_option	opt;
+	char		*str;
+	int			len;
+	int			i;
 
+	va_start(args, option);
+	opt = init_option(option, args);
+	opt.start = get_start_vec(vec);
+	if ((option & V_SEP) && opt.start != 0)
+		ft_memmove(vec->buffer + opt.start, opt.sep, opt.sep_len);
+	i = 0;
+	while (i < opt.nb)
+	{
+		opt.start = get_start_vec(vec);
+		str = va_arg(args, char *);
+		len = get_len_of_fill(args, option, str);
+		ft_memmove(vec->buffer + opt.start, str, len);
+		if ((option & V_MULTI_SEP) && i + 1 != opt.nb)
+			ft_memmove(vec->buffer + opt.start + len,
+				opt.multi_sep, opt.multi_sep_len);
+		i++;
+	}
 	va_end(args);
 	return (vec);
 }

@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector-lib.h                                       :+:      :+:    :+:   */
+/*   vector_template.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 12:00:51 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/18 14:33:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef VECTOR_LIB_H
-# define VECTOR_LIB_H
+#ifndef VECTOR_TEMPLATE_H
+# define VECTOR_TEMPLATE_H
 
 /* ************************************************************************** */
 
-#include "vector-template.h"
+# define V_DEFAULT_RATE		64
+
+# define V_DEFAULT			0
+# define V_SEP				0b0001
+# define V_MULTI_SEP		0b0010
+# define V_MULTIPLE			0b0100
+# define V_NOT_NULL_TERM	0b1000
 
 /* ************************************************************************** */
 
-t_vec	vecInit();
-void	vecDelete(t_vec *vec);
-
-int	v_getLen(t_vec vec);
-int	v_getSize(t_vec vec);
-int	v_getRate(t_vec vec);
-
-t_vec	*vecResize(t_vec *vec);
-t_vec	*vecFill(t_vec *vec, int option, ...);
-void	vecDeleteContent(t_vec *vec);
-
-void	vecPrint(t_vec vec);
+typedef struct s_vec
+{
+	int		len;
+	int		size;
+	int		rate;
+	char	*buffer;
+}	t_vec;
 
 /* ************************************************************************** */
 
