@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:32:52 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:51:30 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
+
+t_vec	*vec_resize(t_vec *vec);
 
 typedef struct s_v_option
 {
@@ -54,16 +56,21 @@ static t_v_option	init_option(int optionRaw, va_list args)
  * @param vec The given vec.
  * @return int The index.
  */
-static int	get_start_vec(t_vec *vec)
+static int	get_start_vec(t_vec *vec, char *str, int sep_len)
 {
 	int	i;
+	int	res;
 
 	i = vec->len - 1;
 	while (i >= 0 && vec->buffer[i] == 0)
 		i--;
 	if (i == -1)
-		return (0);
-	return (i + 1);
+		res = 0;
+	else
+		res = i + 1;
+	while (vec->len < res + (int) ft_strlen(str) + sep_len)
+		vec_resize(vec);
+	return (res);
 }
 
 /**
@@ -108,14 +115,14 @@ t_vec	*vec_fill(t_vec *vec, int option, ...)
 
 	va_start(args, option);
 	opt = init_option(option, args);
-	opt.start = get_start_vec(vec);
+	opt.start = get_start_vec(vec, NULL, opt.sep_len);
 	if ((option & V_SEP) && opt.start != 0)
 		ft_memmove(vec->buffer + opt.start, opt.sep, opt.sep_len);
 	i = 0;
 	while (i < opt.nb)
 	{
-		opt.start = get_start_vec(vec);
 		str = va_arg(args, char *);
+		opt.start = get_start_vec(vec, str, opt.sep_len);
 		len = get_len_of_fill(args, option, str);
 		ft_memmove(vec->buffer + opt.start, str, len);
 		if ((option & V_MULTI_SEP) && i + 1 != opt.nb)
