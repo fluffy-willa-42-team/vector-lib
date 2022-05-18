@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 08:58:19 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:24:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ t_vec vecInitStrict(int len, int size, int rate){
 /**
  * @brief Initialize a vector.
  * 
- * @param size Size of a single elements inside the vector.
- * @param rate The rate of growth of the allocation ()
  * @return t_vec 
  */
-t_vec vecInit(int size, int rate){
-	return (vecInitStrict(rate, size, rate));
+t_vec vecInit(){
+	return (vecInitStrict(V_DEFAULT_RATE, sizeof(char), V_DEFAULT_RATE));
 }
