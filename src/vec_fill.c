@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/19 12:05:04 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:07:49 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,6 @@ static t_v_option	init_option(int optionRaw, va_list args)
 }
 
 /**
- * @brief
- * 
-
- */
-
-/**
  * @brief Get the first char we can write to in the vec and
  * resize the vector so it can fit with the start, a string and a separator.
  * 
@@ -83,7 +77,8 @@ int	get_start_vec(t_vec *vec, int str_len, int sep_len)
 }
 
 /**
- * @brief Get the of the str to be writen in the buffer without exceeding.
+ * @brief Get the length of the str to be writen in the buffer
+ * without exceeding.
  * 
  * @param args va_list.
  * @param option options of the fill.
