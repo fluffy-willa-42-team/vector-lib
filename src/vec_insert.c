@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 11:53:18 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/19 12:05:38 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:06:16 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ t_vec	*vec_insert(t_vec *vec, char *str, int index)
 	int	start;
 	int	len;
 
-	(void) vec;
-	(void) str;
-	(void) index;
 	if (!vec)
 		return (NULL);
 	if (!str || index < 0)
