@@ -35,7 +35,7 @@ THISPATH	= $(shell pwd)
 
 # **************************************************************************** #
 
-# SRCS		=	vec_delete.c\
+SRCS		=	vec_delete.c\
 				vec_init.c\
 				vec_print.c\
 				ft_strlen.c\
@@ -46,7 +46,7 @@ THISPATH	= $(shell pwd)
 				vec_utils.c\
 				vec_resize.c\
 
-SRCS		= $(SRCS_FIND)
+# SRCS		= $(SRCS_FIND)
 
 # **************************************************************************** #
 
