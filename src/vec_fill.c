@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:51:30 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/19 12:05:04 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,21 @@ static t_v_option	init_option(int optionRaw, va_list args)
 }
 
 /**
- * @brief Get the first char we can write to in the vec.
+ * @brief
+ * 
+
+ */
+
+/**
+ * @brief Get the first char we can write to in the vec and
+ * resize the vector so it can fit with the start, a string and a separator.
  * 
  * @param vec The given vec.
+ * @param str_len The length of the string we want to add.
+ * @param sep_len The length of the separator.
  * @return int The index.
  */
-static int	get_start_vec(t_vec *vec, char *str, int sep_len)
+int	get_start_vec(t_vec *vec, int str_len, int sep_len)
 {
 	int	i;
 	int	res;
@@ -68,7 +77,7 @@ static int	get_start_vec(t_vec *vec, char *str, int sep_len)
 		res = 0;
 	else
 		res = i + 1;
-	while (vec->len < res + (int) ft_strlen(str) + sep_len)
+	while (vec->len < res + str_len + sep_len)
 		vec_resize(vec);
 	return (res);
 }
@@ -115,14 +124,14 @@ t_vec	*vec_fill(t_vec *vec, int option, ...)
 
 	va_start(args, option);
 	opt = init_option(option, args);
-	opt.start = get_start_vec(vec, NULL, opt.sep_len);
+	opt.start = get_start_vec(vec, 0, opt.sep_len);
 	if ((option & V_SEP) && opt.start != 0)
 		ft_memmove(vec->buffer + opt.start, opt.sep, opt.sep_len);
 	i = 0;
 	while (i < opt.nb)
 	{
 		str = va_arg(args, char *);
-		opt.start = get_start_vec(vec, str, opt.sep_len);
+		opt.start = get_start_vec(vec, ft_strlen(str), opt.sep_len);
 		len = get_len_of_fill(args, option, str);
 		ft_memmove(vec->buffer + opt.start, str, len);
 		if ((option & V_MULTI_SEP) && i + 1 != opt.nb)
