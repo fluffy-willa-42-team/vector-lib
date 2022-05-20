@@ -73,11 +73,26 @@ FLAGS		= -Wall -Wextra -Werror -g3
 
 # **************************************************************************** #
 
+DEBUG		= 0
+SANI		= 0
+
+ifeq ($(SANI), 1)
+	FLAGS += -fsanitize=address
+	DEBUG = 1
+endif
+
+ifeq ($(DEBUG), 1)
+	FLAGS += -g3
+endif
+
+# **************************************************************************** #
+
 NAME		= vector_lib.a
 
 # **************************************************************************** #
 
 all: $(DIR) $(ALL_LIB) $(NAME)
+	@if [ $(DEBUG) = 1 ]; then printf "$(COLOR_RED)/!\ DEBUG ENABLE /!\$(COLOR_NORMAL)\nFlag used:\n"; printf "    %s\n" $(FLAGS); fi
 
 # Creates every repositories if it does not exist
 $(DIR):
