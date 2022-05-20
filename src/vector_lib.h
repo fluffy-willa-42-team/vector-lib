@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_lib.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:32:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/20 15:32:41 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 /* ************************************************************************** */
 
 t_vec	vec_init(void);
+t_vec	vec_init_strict(int len, int size, int rate);
 void	vec_delete(t_vec *vec);
 
 int		v_get_len(t_vec vec);
