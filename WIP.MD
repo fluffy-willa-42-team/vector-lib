@@ -1,5 +1,20 @@
 # WIP
 
+## schema
+
+```
+abcd.efgh.ijkl.mnop....
+^    ^    ^    ^  
+|    |    |    |  
+0x0  0x5  0x10 0x15
+
+index:
+[0]: 0x0
+[1]: 0x5
+[2]: 0x10
+[3]: 0x15
+```
+
 ## TODO
 
  - [ ] Check si le buffer est impairt comment réagit le push de 3 élement d'un len de 1
