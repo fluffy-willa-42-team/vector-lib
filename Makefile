@@ -35,18 +35,18 @@ THISPATH	= $(shell pwd)
 
 # **************************************************************************** #
 
-SRCS		=	vec_delete.c\
-				vec_init.c\
-				vec_print.c\
-				ft_strlen.c\
-				isprint.c\
-				ft_memset.c\
-				ft_memmove.c\
-				vec_fill.c\
-				vec_utils.c\
-				vec_resize.c\
+# SRCS		=	vec_delete.c\
+# 				vec_init.c\
+# 				vec_print.c\
+# 				ft_strlen.c\
+# 				isprint.c\
+# 				ft_memset.c\
+# 				ft_memmove.c\
+# 				vec_fill.c\
+# 				vec_utils.c\
+# 				vec_resize.c\
 
-# SRCS		= $(SRCS_FIND)
+SRCS		= $(SRCS_FIND)
 
 # **************************************************************************** #
 

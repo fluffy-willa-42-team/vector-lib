@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:58:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:32:48 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 11:54:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	vec_print(t_vec vec)
 	i = 0;
 	while (i < vec.len)
 	{
-		if (ft_isprint(vec.buffer[i]))
-			write(1, &vec.buffer[i], 1);
+		if (ft_isprint(((char *) vec.buffer)[i]))
+			write(1, &((char *) vec.buffer)[i], 1);
 		else
 			write(1, ".", 1);
 		i++;

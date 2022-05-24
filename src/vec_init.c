@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:32:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 11:09:34 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_vec	vec_init_strict(int len, int size, int rate)
  * 
  * @return t_vec 
  */
-t_vec	vec_init(void)
+t_vec	vec_init(int size)
 {
-	return (vec_init_strict(V_DEFAULT_RATE, sizeof(char), V_DEFAULT_RATE));
+	return (vec_init_strict(V_DEFAULT_RATE, size, V_DEFAULT_RATE));
 }
