@@ -22,6 +22,8 @@ In this doc and in the code we use certain terms often. THerefore, here is explo
 - [Initialization](#Initialization)
 - [Termination](#Termination)
 - [Adding content](#Adding-content)
+- [Get an element](#Get-an-element)
+- [Print the vector](#Print-the-vector)
 
 ---
 
@@ -32,8 +34,8 @@ In this doc and in the code we use certain terms often. THerefore, here is explo
 - [vec_delete_content](#Termination)
 - [vec_add](#Array-of-any-elements)
 - [vec_fill](#Array-of-characters)
-- [vec_get](#Adding-content)
-- [vec_print](#Adding-content)
+- [vec_get](#Get-an-element)
+- [vec_print](#Print-the-vector)
 
 ---
 
