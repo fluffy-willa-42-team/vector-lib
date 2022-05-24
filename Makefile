@@ -144,6 +144,9 @@ print_src:
 		echo $$elem;\
 	done
 
+ping:
+	@printf "[%s] pong!\n" $(THISPATH)
+
 # **************************************************************************** #
 
 re: fclean all
