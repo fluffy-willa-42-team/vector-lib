@@ -6,13 +6,15 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/19 12:07:49 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 09:23:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "vector_template.h"
 #include <unistd.h>
+
+#include <stdio.h>
 
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dst, const void *src, size_t len);
@@ -24,6 +26,8 @@ typedef struct s_v_option
 {
 	int		raw;
 	int		start;
+	void	*str;
+	int		len;
 	void	*sep;
 	int		sep_len;
 	void	*multi_sep;
@@ -31,23 +35,49 @@ typedef struct s_v_option
 	int		nb;
 }	t_v_option;
 
-static t_v_option	init_option(int optionRaw, va_list args)
+static t_v_option	init_v_option(void)
 {
 	t_v_option	option;
 
-	option.raw = optionRaw;
+	option.raw = 0;
+	option.start = 0;
+	option.str = NULL;
+	option.len = 0;
 	option.sep = NULL;
 	option.multi_sep = NULL;
+	option.sep_len = 0;
+	option.multi_sep_len = 0;
 	option.nb = 1;
-	if (option.raw & V_SEP)
-		option.sep = va_arg(args, char *);
-	if (option.raw & V_MULTI_SEP)
-		option.multi_sep = va_arg(args, char *);
-	if (option.raw & V_MULTIPLE)
-		option.nb = va_arg(args, int);
-	option.sep_len = ft_strlen(option.sep);
-	option.multi_sep_len = ft_strlen(option.multi_sep);
 	return (option);
+}
+
+void	init_option_val(t_v_option *option, int optionRaw, va_list args)
+{
+	option->raw = optionRaw;
+	if (option->raw & V_SEP)
+	{
+		option->sep = va_arg(args, char *);
+		if (ft_strlen(option->sep) == 0)
+		{
+			option->sep_len = 1;
+			option->sep = "";
+		}
+		else
+			option->sep_len = ft_strlen(option->sep);
+	}
+	if (option->raw & V_MULTI_SEP)
+	{
+		option->multi_sep = va_arg(args, char *);
+		if (ft_strlen(option->multi_sep) == 0)
+		{
+			option->multi_sep_len = 1;
+			option->multi_sep = "\0";
+		}
+		else
+			option->multi_sep_len = ft_strlen(option->multi_sep);
+	}
+	if (option->raw & V_MULTIPLE)
+		option->nb = va_arg(args, int);
 }
 
 /**
@@ -59,7 +89,7 @@ static t_v_option	init_option(int optionRaw, va_list args)
  * @param sep_len The length of the separator.
  * @return int The index.
  */
-int	get_start_vec(t_vec *vec, int str_len, int sep_len)
+static int	start_vec(t_vec *vec, int str_len, int sep_len, char *sep)
 {
 	int	i;
 	int	res;
@@ -73,6 +103,8 @@ int	get_start_vec(t_vec *vec, int str_len, int sep_len)
 		res = i + 1;
 	while (vec->len < res + str_len + sep_len)
 		vec_resize(vec);
+	if (sep && sep[0] == 0 && res != 0)
+		return (res + 1);
 	return (res);
 }
 
@@ -113,24 +145,24 @@ t_vec	*vec_fill(t_vec *vec, int option, ...)
 {
 	va_list		args;
 	t_v_option	opt;
-	char		*str;
-	int			len;
 	int			i;
 
 	va_start(args, option);
-	opt = init_option(option, args);
-	opt.start = get_start_vec(vec, 0, opt.sep_len);
+	opt = init_v_option();
+	init_option_val(&opt, option, args);
+	opt.start = start_vec(vec, 0, opt.sep_len, opt.sep);
 	if ((option & V_SEP) && opt.start != 0)
 		ft_memmove(vec->buffer + opt.start, opt.sep, opt.sep_len);
 	i = 0;
 	while (i < opt.nb)
 	{
-		str = va_arg(args, char *);
-		opt.start = get_start_vec(vec, ft_strlen(str), opt.sep_len);
-		len = get_len_of_fill(args, option, str);
-		ft_memmove(vec->buffer + opt.start, str, len);
+		opt.str = va_arg(args, char *);
+		opt.start = start_vec(vec, ft_strlen(opt.str), opt.sep_len, opt.sep);
+		printf("%d\n", opt.start);
+		opt.len = get_len_of_fill(args, option, opt.str);
+		ft_memmove(vec->buffer + opt.start, opt.str, opt.len);
 		if ((option & V_MULTI_SEP) && i + 1 != opt.nb)
-			ft_memmove(vec->buffer + opt.start + len,
+			ft_memmove(vec->buffer + opt.start + opt.len,
 				opt.multi_sep, opt.multi_sep_len);
 		i++;
 	}
