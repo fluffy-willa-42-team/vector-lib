@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_lib.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:32:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:50:23 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_vec	*vec_resize(t_vec *vec);
 t_vec	*vec_fill(t_vec *vec, int option, ...);
 void	vec_delete_content(t_vec *vec);
 
-void	vec_print(t_vec vec);
+void	vec_print(t_vec *vec);
 
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:58:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:32:48 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 12:49:48 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@
 
 int	ft_isprint(int c);
 
-void	vec_print(t_vec vec)
+void	vec_print(t_vec *vec)
 {
 	int	i;
 
-	if (!vec.buffer)
+	if (!vec || !vec->buffer)
 		return ;
 	i = 0;
-	while (i < vec.len)
+	while (i < vec->len)
 	{
-		if (ft_isprint(vec.buffer[i]))
-			write(1, &vec.buffer[i], 1);
+		if (ft_isprint(vec->buffer[i]))
+			write(1, &vec->buffer[i], 1);
 		else
 			write(1, ".", 1);
 		i++;
