@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_fill.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 11:53:29 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 13:17:52 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ t_vec	*vec_fill(t_vec *vec, int option, ...)
 	while (i < opt.nb)
 	{
 		opt.str = va_arg(args, char *);
-		opt.start = g_start_vec(vec, ft_strlen(opt.str), opt.sep_len, opt.sep);
+		opt.start = g_start_vec(vec, ft_strlen(opt.str), opt.multi_sep_len, opt.multi_sep);
 		opt.len = get_fill_len(args, option, opt.str);
 		ft_memmove(vec->buffer + opt.start, opt.str, opt.len);
 		if ((option & V_MULTI_SEP) && i + 1 != opt.nb)
