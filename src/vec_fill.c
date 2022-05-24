@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_fill.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 13:17:52 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 13:25:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	init_option_val(t_v_option *option, int optionRaw, va_list args)
 		else
 			option->sep_len = ft_strlen(option->sep);
 	}
-	if (option->raw & V_MULTI_SEP)
+	if (option->raw & 0b10)
 	{
 		option->multi_sep = va_arg(args, char *);
 		if (ft_strlen(option->multi_sep) == 0)
@@ -147,10 +147,11 @@ t_vec	*vec_fill(t_vec *vec, int option, ...)
 	while (i < opt.nb)
 	{
 		opt.str = va_arg(args, char *);
-		opt.start = g_start_vec(vec, ft_strlen(opt.str), opt.multi_sep_len, opt.multi_sep);
+		opt.start = g_start_vec(vec, ft_strlen(opt.str),
+				opt.multi_sep_len, opt.multi_sep);
 		opt.len = get_fill_len(args, option, opt.str);
 		ft_memmove(vec->buffer + opt.start, opt.str, opt.len);
-		if ((option & V_MULTI_SEP) && i + 1 != opt.nb)
+		if ((option & 0b10) && i + 1 != opt.nb)
 			ft_memmove(vec->buffer + opt.start + opt.len,
 				opt.multi_sep, opt.multi_sep_len);
 		i++;
