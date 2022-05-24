@@ -17,7 +17,7 @@ index:
 
 ## TODO
 
- - [ ] Check si le buffer est impairt comment réagit le push de 3 élement d'une len de 1 avec séparateur.
+ - [x] Check si le buffer est impairt comment réagit le push de 3 élement d'une len de 1 avec séparateur.
 > expexted behaviour
 > ```
 > vect_init() //size set @ `5`
