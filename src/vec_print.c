@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:58:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 12:49:48 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 13:17:31 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	vec_print(t_vec *vec)
 	i = 0;
 	while (i < vec->len)
 	{
-		if (ft_isprint(vec->buffer[i]))
-			write(1, &vec->buffer[i], 1);
+		if (ft_isprint(((char *) vec->buffer)[i]))
+			write(1, &((char *) vec->buffer)[i], 1);
 		else
 			write(1, ".", 1);
 		i++;

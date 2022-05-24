@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 13:05:38 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/05/24 13:17:52 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,14 @@ static void	init_option_val(t_v_option *option, int optionRaw, va_list args)
  * @brief [internal] Get the first writable character inside the vector and will
  * expand the vector if needed
  */
-static int	g_start_vec(t_vec *vec, int str_len, int sep_len, char *sep)
+int	g_start_vec(t_vec *vec, int str_len, int sep_len, char *sep)
 {
 	int	res;
 
 	if (!vec->buffer)
 		vec_resize(vec);
 	res = vec->len - 1;
-	while (res > 0 && vec->buffer[res - 1] == 0)
+	while (res > 0 && ((char *) vec->buffer)[res - 1] == 0)
 		res--;
 	if (res != 0 && sep && !sep[0])
 		res += 1;
