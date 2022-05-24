@@ -275,5 +275,3 @@ vec_print(my_vector_ptr);
 ```
 
 vec_print will print in the std all printable character and will print all the non-printable as a ``'.'``.
-
----
