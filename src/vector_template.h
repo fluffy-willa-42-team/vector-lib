@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/18 14:33:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 10:03:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define V_SEP				0b0001
 # define V_MULTI_SEP		0b0010
 # define V_MULTIPLE			0b0100
-# define V_NOT_NULL_TERM	0b1000
+# define V_FIXED_LEN		0b1000
 
 /* ************************************************************************** */
 

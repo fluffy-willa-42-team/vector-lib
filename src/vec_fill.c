@@ -6,15 +6,13 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 09:23:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 10:23:52 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include "vector_template.h"
 #include <unistd.h>
-
-#include <stdio.h>
 
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dst, const void *src, size_t len);
@@ -51,7 +49,10 @@ static t_v_option	init_v_option(void)
 	return (option);
 }
 
-void	init_option_val(t_v_option *option, int optionRaw, va_list args)
+/**
+ * @brief [internal] initialize all option values according to optionRaw.
+ */
+static void	init_option_val(t_v_option *option, int optionRaw, va_list args)
 {
 	option->raw = optionRaw;
 	if (option->raw & V_SEP)
@@ -71,7 +72,7 @@ void	init_option_val(t_v_option *option, int optionRaw, va_list args)
 		if (ft_strlen(option->multi_sep) == 0)
 		{
 			option->multi_sep_len = 1;
-			option->multi_sep = "\0";
+			option->multi_sep = "";
 		}
 		else
 			option->multi_sep_len = ft_strlen(option->multi_sep);
@@ -81,49 +82,35 @@ void	init_option_val(t_v_option *option, int optionRaw, va_list args)
 }
 
 /**
- * @brief Get the first char we can write to in the vec and
- * resize the vector so it can fit with the start, a string and a separator.
- * 
- * @param vec The given vec.
- * @param str_len The length of the string we want to add.
- * @param sep_len The length of the separator.
- * @return int The index.
+ * @brief [internal] Get the first writable character inside the vector and will
+ * expand the vector if needed
  */
-static int	start_vec(t_vec *vec, int str_len, int sep_len, char *sep)
+static int	g_start_vec(t_vec *vec, int str_len, int sep_len, char *sep)
 {
-	int	i;
 	int	res;
 
-	i = vec->len - 1;
-	while (i >= 0 && vec->buffer[i] == 0)
-		i--;
-	if (i == -1)
-		res = 0;
-	else
-		res = i + 1;
+	if (!vec->buffer)
+		vec_resize(vec);
+	res = vec->len - 1;
+	while (res > 0 && vec->buffer[res - 1] == 0)
+		res--;
+	if (res != 0 && sep && !sep[0])
+		res += 1;
 	while (vec->len < res + str_len + sep_len)
 		vec_resize(vec);
-	if (sep && sep[0] == 0 && res != 0)
-		return (res + 1);
 	return (res);
 }
 
 /**
- * @brief Get the length of the str to be writen in the buffer
- * without exceeding.
- * 
- * @param args va_list.
- * @param option options of the fill.
- * @param str The string to be added.
- * @return int The length of the string to be written.
+ * @brief [internal] Get the length of the given string that will be moved
  */
-static int	get_len_of_fill(va_list args, int option, char *str)
+static int	get_fill_len(va_list args, int option, char *str)
 {
 	int	len_of_str;
 	int	res;
 
 	len_of_str = ft_strlen(str);
-	if (option & V_NOT_NULL_TERM)
+	if (option & V_FIXED_LEN)
 		res = va_arg(args, int);
 	else
 		res = len_of_str;
@@ -137,9 +124,12 @@ static int	get_len_of_fill(va_list args, int option, char *str)
  * 
  * @param vec The vector where the string will be added.
  * @param option Options of the adding string. Options are (in order) :
- * @param V_MULTIPLE : lets you put multiple elements at the same time;
- * @param ... 
- * @return t_vec* 
+ * @param V_SEP Will put a string or if null a char 0 between two fill calls.
+ * @param V_MULTI_SEP Will put a string or if null a char 0 between two string
+ * in a call with multiple string added.
+ * @param V_MULTIPLE Will accept multiple strings.
+ * @param V_FIXED_LEN Will limit the length of the string given before.
+ * @param EXAMPLE vec_fill(vec, opt, SEP, MULTI_SEP, NB_STR, [STR, STR_LEN, ..])
  */
 t_vec	*vec_fill(t_vec *vec, int option, ...)
 {
@@ -150,16 +140,15 @@ t_vec	*vec_fill(t_vec *vec, int option, ...)
 	va_start(args, option);
 	opt = init_v_option();
 	init_option_val(&opt, option, args);
-	opt.start = start_vec(vec, 0, opt.sep_len, opt.sep);
+	opt.start = g_start_vec(vec, 0, opt.sep_len, opt.sep);
 	if ((option & V_SEP) && opt.start != 0)
 		ft_memmove(vec->buffer + opt.start, opt.sep, opt.sep_len);
 	i = 0;
 	while (i < opt.nb)
 	{
 		opt.str = va_arg(args, char *);
-		opt.start = start_vec(vec, ft_strlen(opt.str), opt.sep_len, opt.sep);
-		printf("%d\n", opt.start);
-		opt.len = get_len_of_fill(args, option, opt.str);
+		opt.start = g_start_vec(vec, ft_strlen(opt.str), opt.sep_len, opt.sep);
+		opt.len = get_fill_len(args, option, opt.str);
 		ft_memmove(vec->buffer + opt.start, opt.str, opt.len);
 		if ((option & V_MULTI_SEP) && i + 1 != opt.nb)
 			ft_memmove(vec->buffer + opt.start + opt.len,
