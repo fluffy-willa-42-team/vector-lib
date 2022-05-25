@@ -69,7 +69,7 @@ OBJ_EXT		= .o
 CODE_EXT	= .c
 HEAD_EXT	= .h
 INC			= -I include
-FLAGS		= -Wall -Wextra -Werror -g3
+FLAGS		= -Wall -Wextra -Werror
 
 # **************************************************************************** #
 
