@@ -100,24 +100,24 @@ To show the result of all the example, i will use the result of [vec_print](#Pri
 
 Vec_fill has many options, here is a list :
 
-- [V_DEFAULT](#V_DEFAULT)
-- [V_SEP](#V_SEP)
-- [V_MULTIPLE](#V_MULTIPLE)
-- [V_MULTI_SEP](#V_MULTI_SEP)
-- [V_MULTI_ALL_SEP](#V_MULTI_ALL_SEP)
-- [V_FIXED_LEN](#V_FIXED_LEN)
+- [DEFAULT](#DEFAULT)
+- [SEP](#SEP)
+- [MULTI](#MULTI)
+- [MULTI_SEP](#MULTI_SEP)
+- [MULTI_ALL_SEP](#MULTI_ALL_SEP)
+- [FIXED_LEN](#FIXED_LEN)
 - [Fusioning multiple options](#Fusioning-multiple-options)
 
 ---
 
-### V_DEFAULT
+### DEFAULT
 
-V_DEFAULT is the default way to use vec_fill and works like this.
+DEFAULT is the default way to use vec_fill and works like this.
 
 ```c
-t_vec *vec_fill(t_vec *vec, V_DEFAULT, char *str);
+t_vec *vec_fill(t_vec *vec, DEFAULT, char *str);
 
-vec_fill(my_vector_ptr, V_DEFAULT, "Hello World");
+vec_fill(my_vector_ptr, DEFAULT, "Hello World");
 ```
 
 ```c
@@ -134,14 +134,14 @@ It simply puts it glued to the result of the previous call.
 
 ---
 
-### V_SEP
+### SEP
 
-V_SEP is an option of vec_fill and it will separate the result different calls.
+SEP is an option of vec_fill and it will separate the result different calls.
 
 ```c
-t_vec *vec_fill(t_vec *vec, V_SEP, char *separator, char *str);
+t_vec *vec_fill(t_vec *vec, SEP, char *separator, char *str);
 
-vec_fill(my_vector_ptr, V_SEP, "___", "Hello World");
+vec_fill(my_vector_ptr, SEP, "___", "Hello World");
 ```
 
 ```c
@@ -151,7 +151,7 @@ vec_fill(my_vector_ptr, V_SEP, "___", "Hello World");
 But you can also put ``NULL`` instead of a string for the separator and the result will be a ``\0`` between the result of the two calls.
 
 ```c
-vec_fill(my_vector_ptr, V_SEP, NULL, "Hello World");
+vec_fill(my_vector_ptr, SEP, NULL, "Hello World");
 ```
 
 ```c
@@ -160,14 +160,14 @@ vec_fill(my_vector_ptr, V_SEP, NULL, "Hello World");
 
 ---
 
-### V_MULTIPLE
+### MULTI
 
-V_MULTIPLE will allow you to add multiple strings at the same time.
+MULTI will allow you to add multiple strings at the same time.
 
 ```c
-t_vec *vec_fill(t_vec *vec, V_MULTIPLE, int nb, char *str1, char *str2);
+t_vec *vec_fill(t_vec *vec, MULTI, int nb, char *str1, char *str2);
 
-vec_fill(my_vector_ptr, V_MULTIPLE, 2, "Hello", "World");
+vec_fill(my_vector_ptr, MULTI, 2, "Hello", "World");
 ```
 
 ```c
@@ -176,14 +176,14 @@ vec_fill(my_vector_ptr, V_MULTIPLE, 2, "Hello", "World");
 
 ---
 
-### V_MULTI_SEP
+### MULTI_SEP
 
-V_MULTI_SEP will allow you to add multiple strings at the same time and have a separator between the different strings.
+MULTI_SEP will allow you to add multiple strings at the same time and have a separator between the different strings.
 
 ```c
-t_vec *vec_fill(t_vec *vec, V_MULTI_SEP, char *separator, int nb, char *str1, char *str2);
+t_vec *vec_fill(t_vec *vec, MULTI_SEP, char *separator, int nb, char *str1, char *str2);
 
-vec_fill(my_vector_ptr, V_MULTI_SEP, "___", 2, "Hello", "World");
+vec_fill(my_vector_ptr, MULTI_SEP, "___", 2, "Hello", "World");
 ```
 
 ```c
@@ -193,7 +193,7 @@ vec_fill(my_vector_ptr, V_MULTI_SEP, "___", 2, "Hello", "World");
 But you can also put ``NULL`` instead of a string for the separator and the result will be a ``\0`` between the result of the two calls.
 
 ```c
-vec_fill(my_vector_ptr, V_MULTI_SEP, NULL, 2, "Hello", "World");
+vec_fill(my_vector_ptr, MULTI_SEP, NULL, 2, "Hello", "World");
 ```
 
 ```c
@@ -202,14 +202,14 @@ vec_fill(my_vector_ptr, V_MULTI_SEP, NULL, 2, "Hello", "World");
 
 ---
 
-### V_MULTI_ALL_SEP
+### MULTI_ALL_SEP
 
-V_MULTI_SEP is the combination of [V_SEP](#V_SEP) and [V_MULTI_SEP](#V_MULTI_SEP). It will allow you to put multiple string and to separate within them and between calls.
+MULTI_SEP is the combination of [SEP](#SEP) and [MULTI_SEP](#MULTI_SEP). It will allow you to put multiple string and to separate within them and between calls.
 
 ```c
-t_vec *vec_fill(t_vec *vec, V_MULTI_ALL_SEP, char *sep, char *multi_sep, int nb, char *str1, char *str2);
+t_vec *vec_fill(t_vec *vec, MULTI_ALL_SEP, char *sep, char *multi_sep, int nb, char *str1, char *str2);
 
-vec_fill(my_vector_ptr, V_MULTI_ALL_SEP, "___", "---", 2, "Hello", "World");
+vec_fill(my_vector_ptr, MULTI_ALL_SEP, "___", "---", 2, "Hello", "World");
 ^ * 2
 ```
 
@@ -219,14 +219,14 @@ vec_fill(my_vector_ptr, V_MULTI_ALL_SEP, "___", "---", 2, "Hello", "World");
 
 ---
 
-### V_FIXED_LEN
+### FIXED_LEN
 
-V_FIXED_LEN will allow to limit what the function will copy (for example if your string is not null terminated).
+FIXED_LEN will allow to limit what the function will copy (for example if your string is not null terminated).
 
 ```c
-t_vec *vec_fill(t_vec *vec, V_FIXED_LEN, char *str, int len);
+t_vec *vec_fill(t_vec *vec, FIXED_LEN, char *str, int len);
 
-vec_fill(my_vector_ptr, V_FIXED_LEN, "Hello World", 5);
+vec_fill(my_vector_ptr, FIXED_LEN, "Hello World", 5);
 ```
 
 ```c
@@ -240,8 +240,8 @@ vec_fill(my_vector_ptr, V_FIXED_LEN, "Hello World", 5);
 You saw all the default option but you can also personalize what the function will do using bit or operator (``|``).
 
 ```c
-t_vec *vec_fill(t_vec *vec, V_SEP | V_FIXED_LEN, ...);
-t_vec *vec_fill(t_vec *vec, V_MULTIPLE | V_FIXED_LEN, ...);
+t_vec *vec_fill(t_vec *vec, SEP | FIXED_LEN, ...);
+t_vec *vec_fill(t_vec *vec, MULTIPLE | FIXED_LEN, ...);
 ...
 ```
 

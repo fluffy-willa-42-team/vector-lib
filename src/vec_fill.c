@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 13:25:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:25:01 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static t_v_option	init_v_option(void)
 static void	init_option_val(t_v_option *option, int optionRaw, va_list args)
 {
 	option->raw = optionRaw;
-	if (option->raw & V_SEP)
+	if (option->raw & SEP)
 	{
 		option->sep = va_arg(args, char *);
 		if (ft_strlen(option->sep) == 0)
@@ -77,7 +77,7 @@ static void	init_option_val(t_v_option *option, int optionRaw, va_list args)
 		else
 			option->multi_sep_len = ft_strlen(option->multi_sep);
 	}
-	if (option->raw & V_MULTIPLE)
+	if (option->raw & MULTI)
 		option->nb = va_arg(args, int);
 }
 
@@ -110,7 +110,7 @@ static int	get_fill_len(va_list args, int option, char *str)
 	int	res;
 
 	len_of_str = ft_strlen(str);
-	if (option & V_FIXED_LEN)
+	if (option & FIXED_LEN)
 		res = va_arg(args, int);
 	else
 		res = len_of_str;
@@ -124,14 +124,14 @@ static int	get_fill_len(va_list args, int option, char *str)
  * 
  * @param vec The vector where the string will be added.
  * @param option Options of the adding string. Options are (in order) :
- * @param V_SEP Will put a string or if null a char 0 between two fill calls.
- * @param V_MULTI_SEP Will put a string or if null a char 0 between two string
+ * @param SEP Will put a string or if null a char 0 between two fill calls.
+ * @param MULTI_SEP Will put a string or if null a char 0 between two string
  * in a call with multiple string added.
- * @param V_MULTIPLE Will accept multiple strings.
- * @param V_FIXED_LEN Will limit the length of the string given before.
+ * @param MULTI Will accept multiple strings.
+ * @param FIXED_LEN Will limit the length of the string given before.
  * @param EXAMPLE vec_fill(vec, opt, SEP, MULTI_SEP, NB_STR, [STR, STR_LEN, ..])
  */
-t_vec	*vec_fill(t_vec *vec, int option, ...)
+t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
 {
 	va_list		args;
 	t_v_option	opt;
@@ -141,7 +141,7 @@ t_vec	*vec_fill(t_vec *vec, int option, ...)
 	opt = init_v_option();
 	init_option_val(&opt, option, args);
 	opt.start = g_start_vec(vec, 0, opt.sep_len, opt.sep);
-	if ((option & V_SEP) && opt.start != 0)
+	if ((option & SEP) && opt.start != 0)
 		ft_memmove(vec->buffer + opt.start, opt.sep, opt.sep_len);
 	i = 0;
 	while (i < opt.nb)

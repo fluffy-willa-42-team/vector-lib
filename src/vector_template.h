@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 14:48:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/25 09:01:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,15 @@
 
 # define V_DEFAULT_RATE		64
 
-# define V_DEFAULT			0
-# define V_SEP				0b0001
-# define V_MULTIPLE			0b0100
-# define V_MULTI_SEP		0b0110
-# define V_MULTI_ALL_SEP	0b0111
-# define V_FIXED_LEN		0b1000
+typedef enum s_fill_opt
+{
+	DEFAULT = 0b0000,
+	SEP = 0b0001,
+	MULTI = 0b0100,
+	MULTI_SEP = 0b0110,
+	MULTI_ALL_SEP = 0b0111,
+	FIXED_LEN = 0b1000
+}	t_fill_opt;
 
 /* ************************************************************************** */
 
