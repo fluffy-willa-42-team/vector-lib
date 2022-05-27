@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 16:25:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/27 09:31:44 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,8 @@ t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
 	while (i < opt.nb)
 	{
 		opt.str = va_arg(args, char *);
-		opt.start = g_start_vec(vec, ft_strlen(opt.str),
-				opt.multi_sep_len, opt.multi_sep);
 		opt.len = get_fill_len(args, option, opt.str);
+		opt.start = g_start_vec(vec, opt.len, opt.multi_sep_len, opt.multi_sep);
 		ft_memmove(vec->buffer + opt.start, opt.str, opt.len);
 		if ((option & 0b10) && i + 1 != opt.nb)
 			ft_memmove(vec->buffer + opt.start + opt.len,
