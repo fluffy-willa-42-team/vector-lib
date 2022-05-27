@@ -1,3 +1,4 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -106,16 +107,12 @@ int	g_start_vec(t_vec *vec, int str_len, int sep_len, char *sep)
  */
 static int	get_fill_len(va_list args, int option, char *str)
 {
-	int	len_of_str;
 	int	res;
 
-	len_of_str = ft_strlen(str);
 	if (option & FIXED_LEN)
 		res = va_arg(args, int);
 	else
-		res = len_of_str;
-	if (res > len_of_str)
-		return (len_of_str);
+		res = ft_strlen(str);
 	return (res);
 }
 
