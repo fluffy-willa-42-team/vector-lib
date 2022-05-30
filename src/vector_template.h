@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 12:33:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:01:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_vec
 	int		len;
 	int		size;
 	int		rate;
-	int		cursor;
+	int		content_len;
 	void	*buffer;
 }	t_vec;
 

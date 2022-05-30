@@ -15,3 +15,7 @@
 #include "vector_template.h"
 #include <unistd.h>
 
+void test(void)
+{
+	
+}

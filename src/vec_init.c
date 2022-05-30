@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 12:34:54 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 13:01:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_vec	empty_vec(void)
 	res.len = 0;
 	res.size = 0;
 	res.rate = 0;
-	res.cursor = 0;
+	res.content_len = 0;
 	res.buffer = NULL;
 	return (res);
 }
