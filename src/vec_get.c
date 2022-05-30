@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_zero.c                                          :+:      :+:    :+:   */
+/*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/24 12:36:15 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 13:10:08 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/30 15:33:19 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/30 15:45:39 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "vector_template.h"
+
 #include <stdio.h>
 
-int	is_zero(void *mem_raw, int size)
-{
-	unsigned char	*mem;
-	int				i;
+int	get_index(int index, int len);
 
-	mem = (unsigned char *) mem_raw;
-	i = 0;
-	while (i < size)
-	{
-		if (mem[i] != 0)
-			return (0);
-		i++;
-	}
-	return (1);
+void	*vec_get(t_vec *vec, size_t index)
+{
+	printf("%d\n", get_index(index, vec->content_len));
+	return (vec->buffer + get_index(index, vec->content_len) * vec->size);
 }

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 15:14:08 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:44:28 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 
-t_vec	*vec_resize_round(t_vec *vec, int new_len);
+t_vec	*vec_resize_round(t_vec *vec, size_t new_len);
 
 typedef struct s_vf_option
 {
 	va_list	arg_list;
 	char	*sep;
-	int		sep_len;
+	size_t	sep_len;
 	char	*multi_sep;
-	int		multi_sep_len;
-	int		nb;
+	size_t	multi_sep_len;
+	size_t	nb;
 }	t_vf_option;
 
-void	init_option(t_vf_option	*opt, int option)
+void	init_option(t_vf_option	*opt, size_t option)
 {
 	opt->nb = 1;
 	opt->sep = NULL;
@@ -45,10 +45,10 @@ void	init_option(t_vf_option	*opt, int option)
 	if (!opt->multi_sep_len)
 		opt->multi_sep = "";
 	if (option & MULTI)
-		opt->nb = va_arg(opt->arg_list, int);
+		opt->nb = va_arg(opt->arg_list, size_t);
 }
 
-void	add_elem_in_vec(t_vec *vec, char *src, int len)
+void	add_elem_in_vec(t_vec *vec, char *src, size_t len)
 {
 	vec_resize_round(vec, len);
 	ft_memmove(vec->buffer + vec->content_len, src, len);
@@ -58,9 +58,9 @@ void	add_elem_in_vec(t_vec *vec, char *src, int len)
 t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
 {
 	t_vf_option	opt;
-	int			i;
+	size_t		i;
 	char		*str;
-	int			len;
+	size_t		len;
 
 	va_start(opt.arg_list, option);
 	init_option(&opt, option);

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 15:14:23 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:44:49 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_vec	empty_vec(void)
 	return (res);
 }
 
-t_vec	vec_init(int size)
+t_vec	vec_init(size_t size)
 {
 	t_vec	res;
 

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 13:01:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:40:23 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ typedef enum s_fill_opt
 
 typedef struct s_vec
 {
-	int		len;
-	int		size;
-	int		rate;
-	int		content_len;
+	size_t	len;
+	size_t	size;
+	size_t	rate;
+	size_t	content_len;
 	void	*buffer;
 }	t_vec;
 

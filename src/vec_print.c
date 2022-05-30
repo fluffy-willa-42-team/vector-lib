@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:58:32 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 12:39:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:40:36 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	ft_isprint(int c);
 
 void	vec_print(t_vec *vec)
 {
-	int	i;
+	size_t	i;
 
 	if (!vec || !vec->buffer)
 		return ;
