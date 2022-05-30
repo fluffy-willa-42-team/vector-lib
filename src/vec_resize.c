@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 15:16:08 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:26:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_vec	*vec_resize_strict(t_vec *vec, int rate)
 	if (!vec)
 		return (NULL);
 	new_buffer = malloc((vec->len + rate) * vec->size);
+	printf("%d\n", (vec->len + rate) * vec->size);
 	if (!new_buffer)
 		return (NULL);
 	ft_memset(new_buffer, 0, (vec->len + rate) * vec->size);
@@ -38,7 +39,7 @@ static t_vec	*vec_resize_strict(t_vec *vec, int rate)
 t_vec	*vec_resize_round(t_vec *vec, int new_len)
 {
 	if (vec->content_len + new_len + 1 > vec->len)
-		return (vec_resize_strict(vec, ((vec->content_len + new_len + 1)
+		return (vec_resize_strict(vec, ((new_len + 1)
 					/ vec->rate + 1) * vec->rate));
 	return (vec);
 }
