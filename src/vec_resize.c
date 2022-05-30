@@ -6,18 +6,19 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 12:38:29 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 14:09:54 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
 #include "vector_template.h"
+#include "stdio.h"
 
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 
-t_vec	*vec_resize_strict(t_vec *vec, int rate)
+static t_vec	*vec_resize_strict(t_vec *vec, int rate)
 {
 	char	*new_buffer;
 
@@ -31,6 +32,15 @@ t_vec	*vec_resize_strict(t_vec *vec, int rate)
 	vec->len += rate;
 	free(vec->buffer);
 	vec->buffer = new_buffer;
+	return (vec);
+}
+
+t_vec	*vec_resize_round(t_vec *vec, int new_len)
+{
+	if (vec->content_len + new_len + 1 > vec->len){
+		return (vec_resize_strict(vec,
+			(((vec->content_len + new_len + 1) / vec->rate) + 1) * vec->rate));
+	}
 	return (vec);
 }
 
