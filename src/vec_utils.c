@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_utils.c                                        :+:      :+:    :+:   */
+/*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 08:58:53 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/19 11:22:11 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/24 12:46:44 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/24 12:49:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
 
-int	v_get_len(t_vec vec)
+void	*vec_get(t_vec *vec, int index)
 {
-	return (vec.len);
-}
-
-int	v_get_size(t_vec vec)
-{
-	return (vec.size);
-}
-
-int	v_get_rate(t_vec vec)
-{
-	return (vec.rate);
+	return (vec->buffer + (index * vec->size));
 }

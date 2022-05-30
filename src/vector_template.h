@@ -6,12 +6,14 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/25 09:01:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 12:33:45 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_TEMPLATE_H
 # define VECTOR_TEMPLATE_H
+
+# include "unistd.h"
 
 /* ************************************************************************** */
 
@@ -19,12 +21,12 @@
 
 typedef enum s_fill_opt
 {
-	DEFAULT = 0b0000,
-	SEP = 0b0001,
-	MULTI = 0b0100,
-	MULTI_SEP = 0b0110,
-	MULTI_ALL_SEP = 0b0111,
-	FIXED_LEN = 0b1000
+	DEFAULT			= 0b0000,
+	SEP				= 0b0001,
+	MULTI			= 0b0100,
+	MULTI_SEP		= 0b0110,
+	MULTI_ALL_SEP	= 0b0111,
+	FIXED_LEN		= 0b1000
 }	t_fill_opt;
 
 /* ************************************************************************** */
@@ -34,6 +36,7 @@ typedef struct s_vec
 	int		len;
 	int		size;
 	int		rate;
+	int		cursor;
 	void	*buffer;
 }	t_vec;
 
