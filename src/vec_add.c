@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 11:17:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/24 13:12:22 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 10:29:06 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	get_start_vec(t_vec *vec)
 	res = vec->len - 1;
 	while (res > 0 && is_zero(vec_get(vec, res - 1), vec->size))
 		res--;
-	while (vec->len < res)
+	while (vec->len < res + 1)
 		vec_resize(vec);
 	return (res);
 }

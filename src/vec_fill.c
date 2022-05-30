@@ -97,7 +97,7 @@ int	g_start_vec(t_vec *vec, int str_len, int sep_len, char *sep)
 		res--;
 	if (res != 0 && sep && !sep[0])
 		res += 1;
-	while (vec->len < res + str_len + sep_len)
+	while (vec->len < res + str_len + sep_len + 1)
 		vec_resize(vec);
 	return (res);
 }
