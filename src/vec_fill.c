@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -7,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/27 09:31:44 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/30 15:14:08 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +14,12 @@
 #include "vector_template.h"
 #include <unistd.h>
 
-#include <stdio.h>
-
 size_t	ft_strlen(const char *s);
+void	*ft_memmove(void *dst, const void *src, size_t len);
 
-typedef struct vf_option_s
+t_vec	*vec_resize_round(t_vec *vec, int new_len);
+
+typedef struct s_vf_option
 {
 	va_list	arg_list;
 	char	*sep;
@@ -27,9 +27,9 @@ typedef struct vf_option_s
 	char	*multi_sep;
 	int		multi_sep_len;
 	int		nb;
-}	vf_option_t;
+}	t_vf_option;
 
-void	init_option(vf_option_t	*opt, int option)
+void	init_option(t_vf_option	*opt, int option)
 {
 	opt->nb = 1;
 	opt->sep = NULL;
@@ -48,29 +48,35 @@ void	init_option(vf_option_t	*opt, int option)
 		opt->nb = va_arg(opt->arg_list, int);
 }
 
+void	add_elem_in_vec(t_vec *vec, char *src, int len)
+{
+	vec_resize_round(vec, len);
+	ft_memmove(vec->buffer + vec->content_len, src, len);
+	vec->content_len += len;
+}
+
 t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
 {
-	vf_option_t	opt;
+	t_vf_option	opt;
 	int			i;
 	char		*str;
 	int			len;
 
 	va_start(opt.arg_list, option);
 	init_option(&opt, option);
-
-	printf("=> %d\n", opt.nb);
-	printf("\"%s\" (%d)\n", opt.sep, opt.sep_len);
-	printf("\"%s\" (%d)\n", opt.multi_sep, opt.multi_sep_len);
-
+	if (vec->content_len != 0)
+		add_elem_in_vec(vec, opt.sep, opt.sep_len);
 	i = 0;
 	while (i < opt.nb)
 	{
 		str = va_arg(opt.arg_list, char *);
 		if (option & FIXED_LEN)
-			len	= va_arg(opt.arg_list, int);
+			len = va_arg(opt.arg_list, int);
 		else
 			len = ft_strlen(str);
-		printf("\"%s\" (%d)\n", str, len);
+		if (i != 0)
+			add_elem_in_vec(vec, opt.multi_sep, opt.multi_sep_len);
+		add_elem_in_vec(vec, str, len);
 		i++;
 	}
 	va_end(opt.arg_list);
