@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 08:20:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 09:56:21 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/31 10:22:29 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 #include <stdarg.h>
 #include <unistd.h>
-
-#include <stdio.h>
 
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dst, const void *src, size_t len);
@@ -64,9 +62,12 @@ static void	init_option(t_vec *vec, t_vi_option *opt, size_t option)
 
 void	insert_elem(t_vec *vec, t_vi_option	*opt, char *str, size_t len)
 {
-	(void) vec;
-	(void) opt;
-	printf("%s (%zu)\n", str, len);
+	vec_resize_round(vec, len);
+	ft_memmove(vec->buffer + opt->index + len, vec->buffer + opt->index,
+			vec->content_len - opt->index);
+	ft_memmove(vec->buffer + opt->index, str, len);
+	vec->content_len += len;
+	opt->index += len;
 }
 
 t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...)
