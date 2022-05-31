@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 08:21:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/31 12:48:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	vec_delete(t_vec *vec);
 void	vec_destroy(t_vec *vec);
 
 void	*vec_get(t_vec *vec, int index);
+void	*vec_get_raw(t_vec *vec, int index);
 
 t_vec	*vec_resize(t_vec *vec);
 t_vec	*vec_resize_round(t_vec *vec, size_t new_len);
