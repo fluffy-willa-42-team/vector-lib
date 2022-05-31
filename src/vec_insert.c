@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 08:20:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 09:25:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/05/31 09:56:21 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,30 +62,36 @@ static void	init_option(t_vec *vec, t_vi_option *opt, size_t option)
 		opt->nb = va_arg(opt->arg_list, size_t);
 }
 
+void	insert_elem(t_vec *vec, t_vi_option	*opt, char *str, size_t len)
+{
+	(void) vec;
+	(void) opt;
+	printf("%s (%zu)\n", str, len);
+}
+
 t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...)
 {
 	t_vi_option	opt;
 	
 	va_start(opt.arg_list, option);
 	init_option(vec, &opt, option);
-	printf("%zu => %zu\n", opt.nb, opt.index);
 	opt.i = 0;
 	if (opt.index != 0)
-		printf("%s (%zu)\n", opt.sep, opt.sep_len);
+		insert_elem(vec, &opt, opt.sep, opt.sep_len);
 	while (opt.i < opt.nb)
 	{
 		if (opt.i != 0)
-			printf("%s (%zu)\n", opt.multi_sep, opt.multi_sep_len);
+			insert_elem(vec, &opt, opt.multi_sep, opt.multi_sep_len);
 		opt.str = va_arg(opt.arg_list, char *);
 		if (option & FIXED_LEN)
 			opt.len = va_arg(opt.arg_list, int);
 		else
 			opt.len = ft_strlen(opt.str);
-		printf("%zu => %s (%zu)\n", opt.i, opt.str, opt.len);
+		insert_elem(vec, &opt, opt.str, opt.len);
 		opt.i++;
 	}
 	if (opt.index != vec->content_len - 1)
-		printf("%s (%zu)\n", opt.sep, opt.sep_len);
+		insert_elem(vec, &opt, opt.sep, opt.sep_len);
 	va_end(opt.arg_list);
 	return (vec);
 }
