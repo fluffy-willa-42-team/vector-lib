@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_fill.c                                         :+:      :+:    :+:   */
+/*   vec_insert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 08:40:40 by awillems         ###   ########.fr       */
+/*   Created: 2022/05/31 08:20:03 by awillems          #+#    #+#             */
+/*   Updated: 2022/05/31 08:56:48 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include <stdarg.h>
 #include <unistd.h>
 
+#include <stdio.h>
+
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 
 t_vec	*vec_resize_round(t_vec *vec, size_t new_len);
 
-typedef struct s_vf_option
-{
+typedef struct s_vi_option {
 	va_list	arg_list;
 	size_t	option;
 	char	*sep;
@@ -29,9 +30,9 @@ typedef struct s_vf_option
 	char	*multi_sep;
 	size_t	multi_sep_len;
 	size_t	nb;
-}	t_vf_option;
+}	t_vi_option;
 
-static void	init_sep_opt(t_vf_option *opt, int option, char **ptr, size_t *len)
+static void	init_sep_opt(t_vi_option *opt, int option, char **ptr, size_t *len)
 {
 	*ptr = NULL;
 	*len = 0;
@@ -45,7 +46,7 @@ static void	init_sep_opt(t_vf_option *opt, int option, char **ptr, size_t *len)
 	*len = 1;
 }
 
-static void	init_option(t_vf_option *opt, size_t option)
+static void	init_option(t_vi_option *opt, size_t option)
 {
 	opt->nb = 1;
 	opt->option = option;
@@ -55,37 +56,15 @@ static void	init_option(t_vf_option *opt, size_t option)
 		opt->nb = va_arg(opt->arg_list, size_t);
 }
 
-static void	add_elem_in_vec(t_vec *vec, char *src, size_t len)
+t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...)
 {
-	vec_resize_round(vec, len);
-	ft_memmove(vec->buffer + vec->content_len, src, len);
-	vec->content_len += len;
-}
-
-t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
-{
-	t_vf_option	opt;
-	size_t		i;
-	char		*str;
-	size_t		len;
-
+	t_vi_option	opt;
+	
 	va_start(opt.arg_list, option);
 	init_option(&opt, option);
-	if (vec->content_len != 0)
-		add_elem_in_vec(vec, opt.sep, opt.sep_len);
-	i = 0;
-	while (i < opt.nb)
-	{
-		str = va_arg(opt.arg_list, char *);
-		if (option & FIXED_LEN)
-			len = va_arg(opt.arg_list, int);
-		else
-			len = ft_strlen(str);
-		if (i != 0)
-			add_elem_in_vec(vec, opt.multi_sep, opt.multi_sep_len);
-		add_elem_in_vec(vec, str, len);
-		i++;
-	}
+	printf("%zu\n", opt.nb);
+	printf("%s (%zu)\n", opt.sep, opt.sep_len);
+	printf("%s (%zu)\n", opt.multi_sep, opt.multi_sep_len);
 	va_end(opt.arg_list);
 	return (vec);
 }
