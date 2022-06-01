@@ -61,6 +61,7 @@ COLOR_GREEN	= \033[32;1m
 
 DEBUG		= 0
 SANI		= 0
+WRA			= 0
 
 ifeq ($(SANI), 1)
 	FLAGS += -fsanitize=address
@@ -71,6 +72,10 @@ endif
 ifeq ($(DEBUG), 1)
 	FLAGS += -g3
 	MAKE_FLAG += DEBUG=1
+endif
+
+ifeq ($(WRA), 1)
+	FLAGS += -D WRA -I include/debug
 endif
 
 # **************************************************************************** #
