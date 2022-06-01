@@ -91,8 +91,8 @@ SRCS_FIND	= $(notdir $(shell find $(SRC_DIR) -type f -name "*$(CODE_EXT)"))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:$(CODE_EXT)=$(OBJ_EXT)))
 
 # Finds all folders in the LIB_DIR
-# ALL_LIB		= $(shell find $(LIB_DIR)/ -maxdepth 1 -mindepth 1 -type d)
-ALL_LIB		=
+ALL_LIB		= $(shell find $(LIB_DIR)/ -maxdepth 1 -mindepth 1 -type d)
+# ALL_LIB		=
 
 # Finds all the compiled libraries in ALL_LIB
 LIB			= $(shell find $(LIB_DIR) -type f -name "*.a")
@@ -119,7 +119,7 @@ $(DIR):
 # Compiles every lib in the lib repository
 lib_comp:
 	@for path in $(ALL_LIB); do \
-		make -sC $$path $(MAKE_FLAG) all;\
+		if [ -f $$path/makefile ]; then make -sC $$path $(MAKE_FLAG) all; else echo "No makefile"; fi; \
 	done
 
 # Takes any C/CPP files and transforms into an object into the OBJ_DIR
@@ -148,7 +148,9 @@ print:
 clean:
 	@rm -rf $(OBJ)
 	@for path in $(ALL_LIB); do \
+		if [ -f $$path/makefile ]; then \
 		make -sC $$path clean;\
+		else echo "No makefile"; fi; \
 	done
 
 c:
@@ -159,7 +161,9 @@ c:
 fclean:
 	@rm -rf $(OBJ) $(INC_DIR)* $(NAME)
 	@for path in $(ALL_LIB); do \
+		if [ -f $$path/makefile ]; then \
 		make -sC $$path fclean;\
+		else echo "No makefile"; fi; \
 	done
 
 fc:
@@ -202,9 +206,11 @@ remove_stuff:
 update_lib:
 	@for path in $(ALL_LIB); do \
 		printf "[%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		branch=`git -C $$path symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`;\
 		git -C $$path pull origin $$branch;\
 		git -C $$path checkout $$branch;\
+		else echo "No makefile"; fi; \
 	done
 
 update: update_lib
@@ -216,7 +222,9 @@ ping:
 ping_lib:
 	@for path in $(ALL_LIB); do \
 		printf "[%s]\n" $$path;\
+		if [ -f $$path/makefile ]; then \
 		make -C $$path ping;\
+		else echo "No makefile"; fi; \
 	done
 
 git:
