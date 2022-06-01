@@ -75,7 +75,7 @@ ifeq ($(DEBUG), 1)
 endif
 
 ifeq ($(WRA), 1)
-	FLAGS += -D WRA -I include/debug
+	FLAGS += -D WRA -I lib/wraloc
 endif
 
 # **************************************************************************** #
@@ -91,7 +91,8 @@ SRCS_FIND	= $(notdir $(shell find $(SRC_DIR) -type f -name "*$(CODE_EXT)"))
 OBJ			= $(addprefix $(OBJ_DIR)/, $(SRCS:$(CODE_EXT)=$(OBJ_EXT)))
 
 # Finds all folders in the LIB_DIR
-ALL_LIB		= $(shell find $(LIB_DIR)/ -maxdepth 1 -mindepth 1 -type d)
+# ALL_LIB		= $(shell find $(LIB_DIR)/ -maxdepth 1 -mindepth 1 -type d)
+ALL_LIB		=
 
 # Finds all the compiled libraries in ALL_LIB
 LIB			= $(shell find $(LIB_DIR) -type f -name "*.a")

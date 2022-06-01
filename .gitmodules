@@ -1,0 +1,3 @@
+[submodule "lib/wraloc"]
+	path = lib/wraloc
+	url = git@github.com:lorenuars19/wraloc.git
