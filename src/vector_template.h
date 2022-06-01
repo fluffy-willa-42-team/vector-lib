@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_template.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 15:40:23 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/01 14:27:22 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define VECTOR_TEMPLATE_H
 
 # include "unistd.h"
+
+#  ifdef WRA
+# include "wraloc.h"
+#  endif /* WRA */
 
 /* ************************************************************************** */
 
