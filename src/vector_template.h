@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_template.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 14:32:27 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 11:04:01 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,11 @@
 
 # include "unistd.h"
 
-#  ifdef WRA
-# include "wraloc.h"
-#  endif /* WRA */
-
 /* ************************************************************************** */
 
-#  ifdef WRA
-# include "wraloc.h"
-#  endif /* WRA */
+# ifdef WRA
+#  include "wraloc.h"
+# endif /* WRA */
 
 # define V_DEFAULT_RATE		64
 

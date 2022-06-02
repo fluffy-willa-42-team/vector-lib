@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/01 14:29:39 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:04:30 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static t_vec	*vec_resize_strict(t_vec *vec, size_t rate)
 	return (vec);
 }
 
+//TODO FIX ROUND UP
 t_vec	*vec_resize_round(t_vec *vec, size_t new_len)
 {
 	if (vec->content_len + new_len + 1 > vec->len)
