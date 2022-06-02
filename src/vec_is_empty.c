@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:05:51 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:12:15 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/02 15:54:31 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	vec_is_empty(t_vec *vec, size_t index)
 	i = 0;
 	while (i < vec->size)
 	{
-		if (*((char *) vec->buffer + index * vec->size) != 0)
+		if (*((char *) vec->buffer + index + i) != 0)
 			return (0);
 		i++;
 	}
