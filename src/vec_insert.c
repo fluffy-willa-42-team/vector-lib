@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 08:20:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 10:22:29 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:02:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ static void	init_option(t_vec *vec, t_vi_option *opt, size_t option)
 		opt->nb = va_arg(opt->arg_list, size_t);
 }
 
-void	insert_elem(t_vec *vec, t_vi_option	*opt, char *str, size_t len)
+t_vec	*insert_elem(t_vec *vec, t_vi_option	*opt, char *str, size_t len)
 {
-	vec_resize_round(vec, len);
+	if (!vec_resize_round(vec, len))
+		return (NULL);
 	ft_memmove(vec->buffer + opt->index + len, vec->buffer + opt->index,
 			vec->content_len - opt->index);
 	ft_memmove(vec->buffer + opt->index, str, len);
@@ -78,21 +79,25 @@ t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...)
 	init_option(vec, &opt, option);
 	opt.i = 0;
 	if (opt.index != 0)
-		insert_elem(vec, &opt, opt.sep, opt.sep_len);
+		if (!insert_elem(vec, &opt, opt.sep, opt.sep_len))
+			return (NULL);
 	while (opt.i < opt.nb)
 	{
 		if (opt.i != 0)
-			insert_elem(vec, &opt, opt.multi_sep, opt.multi_sep_len);
+			if (!insert_elem(vec, &opt, opt.multi_sep, opt.multi_sep_len))
+				return (NULL);
 		opt.str = va_arg(opt.arg_list, char *);
 		if (option & FIXED_LEN)
 			opt.len = va_arg(opt.arg_list, int);
 		else
 			opt.len = ft_strlen(opt.str);
-		insert_elem(vec, &opt, opt.str, opt.len);
+		if (!insert_elem(vec, &opt, opt.str, opt.len))
+			return (NULL);
 		opt.i++;
 	}
 	if (opt.index != vec->content_len - 1)
-		insert_elem(vec, &opt, opt.sep, opt.sep_len);
+		if (!insert_elem(vec, &opt, opt.sep, opt.sep_len))
+			return (NULL);
 	va_end(opt.arg_list);
 	return (vec);
 }

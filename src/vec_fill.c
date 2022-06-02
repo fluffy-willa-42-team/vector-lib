@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 09:30:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:00:32 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ static void	init_option(t_vf_option *opt, size_t option)
 		opt->nb = va_arg(opt->arg_list, size_t);
 }
 
-static void	add_elem_in_vec(t_vec *vec, char *src, size_t len)
+static t_vec	*add_elem_in_vec(t_vec *vec, char *src, size_t len)
 {
-	vec_resize_round(vec, len);
+	if (!vec_resize_round(vec, len))
+		return (NULL);
 	ft_memmove(vec->buffer + vec->content_len, src, len);
 	vec->content_len += len;
+	return (vec);
 }
 
 t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
@@ -72,7 +74,8 @@ t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
 	va_start(opt.arg_list, option);
 	init_option(&opt, option);
 	if (vec->content_len != 0)
-		add_elem_in_vec(vec, opt.sep, opt.sep_len);
+		if (!add_elem_in_vec(vec, opt.sep, opt.sep_len))
+			return (NULL);
 	opt.i = 0;
 	while (opt.i < opt.nb)
 	{
@@ -82,8 +85,10 @@ t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
 		else
 			opt.len = ft_strlen(opt.str);
 		if (opt.i != 0)
-			add_elem_in_vec(vec, opt.multi_sep, opt.multi_sep_len);
-		add_elem_in_vec(vec, opt.str, opt.len);
+			if (!add_elem_in_vec(vec, opt.multi_sep, opt.multi_sep_len))
+				return (NULL);
+		if (!add_elem_in_vec(vec, opt.str, opt.len))
+			return (NULL);
 		opt.i++;
 	}
 	va_end(opt.arg_list);
