@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_get.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 15:33:19 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/31 12:52:45 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 14:59:32 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	*vec_get(t_vec *vec, int index)
  */
 void	*vec_get_raw(t_vec *vec, int index)
 {
-	return (vec->buffer + get_index(index, vec->len) * vec->size);
+	return (vec->buffer + index * vec->size);
 }

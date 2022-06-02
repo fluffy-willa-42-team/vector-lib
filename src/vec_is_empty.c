@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   vec_is_empty.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:05:51 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:08:49 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 15:12:15 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
 
-int	vec_is_empty(t_vec *vec, int index)
+int	vec_is_empty(t_vec *vec, size_t index)
 {
-	int	i;
+	size_t	i;
 
 	if (index >= vec->len)
 		return (1);
