@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 08:20:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:11:12 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/02 11:13:09 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_vec	*insert_elem(t_vec *vec, t_vi_option	*opt, char *str, size_t len)
 	ft_memmove(vec->buffer + opt->index, str, len);
 	vec->content_len += len;
 	opt->index += len;
+	return (vec);
 }
 
 t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...)
