@@ -19,7 +19,7 @@ int	get_index(int index, int len);
  */
 void	*vec_get(t_vec *vec, int index)
 {
-	if (vec->content_len == 0)
+	if (!vec && get_index(index, vec->content_len) == -1)
 		return (NULL);
 	return (vec->buffer + get_index(index, vec->content_len) * vec->size);
 }

@@ -12,6 +12,8 @@
 
 int	get_index(int index, int len)
 {
+	if (len < 1)
+		return (-1);
 	while (index < 0)
 		index += len;
 	while (index >= len)
