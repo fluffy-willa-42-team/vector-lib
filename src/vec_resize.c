@@ -16,6 +16,7 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
+size_t	ft_round_up(size_t nb, size_t base);
 
 static t_vec	*vec_resize_strict(t_vec *vec, size_t rate)
 {
@@ -37,7 +38,7 @@ static t_vec	*vec_resize_strict(t_vec *vec, size_t rate)
 t_vec	*vec_resize_round(t_vec *vec, size_t new_len)
 {
 	if (vec->content_len + new_len + 1 > vec->len)
-		return (vec_resize_strict(vec, ((new_len + 1) / vec->rate + 1) * vec->rate));
+		return (vec_resize_strict(vec, ft_round_up(new_len, vec->rate)));
 	return (vec);
 }
 
