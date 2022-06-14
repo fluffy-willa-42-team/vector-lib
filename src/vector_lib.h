@@ -39,6 +39,8 @@ void	vec_print(t_vec *vec);
 
 int		vec_is_empty(t_vec *vec, int index);
 
+t_vec	*vec_cast(t_vec *vec, size_t new_size, void *casting_function(void *));
+
 /* ************************************************************************** */
 
 #endif
