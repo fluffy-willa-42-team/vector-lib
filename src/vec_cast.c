@@ -61,7 +61,7 @@ t_vec	*vec_cast(t_vec *vec, size_t new_size, int casting_function())
 				return (NULL);
 		ft_memset(vec->buffer + vec->content_len * new_size, 0,
 			vec->content_len * (old_size - new_size));
-		vec->len = vec->len * old_size / new_size;
+		// vec->len = vec->len * (old_size / new_size) - 1;
 	}
 	return (vec);
 }
