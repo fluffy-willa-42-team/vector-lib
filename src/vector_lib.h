@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_lib.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 15:09:10 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 10:58:17 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	vec_print(t_vec *vec);
 int		vec_is_empty(t_vec *vec, int index);
 
 t_vec	*vec_cast(t_vec *vec, size_t new_size, int casting_function());
+
+t_vec	*vec_add_itoa(t_vec *vec, int n);
 
 /* ************************************************************************** */
 
