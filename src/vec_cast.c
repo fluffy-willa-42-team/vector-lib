@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_fill.c                                         :+:      :+:    :+:   */
+/*   vec_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:00:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/24 11:43:34 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_vec	*vec_cast(t_vec *vec, size_t new_size, int casting_function())
 				return (NULL);
 		ft_memset(vec->buffer + vec->content_len * new_size, 0,
 			vec->content_len * (old_size - new_size));
-		// vec->len = vec->len * (old_size / new_size) - 1;
+		// vec->len = vec->len * (old_size / new_size) - 1;//TODO
 	}
 	return (vec);
 }
