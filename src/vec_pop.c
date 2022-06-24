@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:13:39 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/24 16:43:30 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/24 16:55:02 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,10 @@ void	*ft_memset(void *b, int c, size_t len);
 
 /**
  * Will pop one element in the buffer.
+ * [abcde] -> pop(2) -> [abde\0]
  *
- * @param index negative numbre supported so if vec_pop(-1) will remove the last
+ * @param index negative numbre are supported so if vec_pop(-1) will remove the last
  *              element.
- * 
- *   [abcde]
- * pop(2)
- *   [abde\0]
- * 
- *   [0]: aaa
- *   [1]: bbb
- *   [2]: ccc
- *   [3]: ddd
- * pop(1)
- *   [0]: aaa
- *   [1]: ccc
- *   [2]: ddd
- *   [3]: \0\0\0
- * 
  */
 t_vec	*vec_pop(t_vec *vec, int index)
 {
