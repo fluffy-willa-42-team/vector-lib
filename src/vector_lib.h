@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 10:58:17 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/24 14:53:03 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_vec	*vec_add_n(t_vec	*vec, void *new_content, size_t nb_elem);
 t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...);
 
 t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...);
-
+t_vec	*vec_pop(t_vec *vec, int index);
 void	vec_print(t_vec *vec);
 
 int		vec_is_empty(t_vec *vec, int index);
