@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "vector_template.h"
+#include <stddef.h>
 
 int		get_index(int index, int len);
 void	*ft_memmove(void *dst, const void *src, size_t len);
@@ -22,6 +23,7 @@ void	*ft_memset(void *b, int c, size_t len);
  *
  * @param index negative numbre are supported so if vec_pop(-1) will remove the last
  *              element.
+ * @return t_vec * Return the `vec` ptr, `NULL` if the content len is `0`.
  */
 t_vec	*vec_pop(t_vec *vec, int index)
 {
@@ -30,7 +32,7 @@ t_vec	*vec_pop(t_vec *vec, int index)
 	void	*dst;
 
 	if (!vec->content_len)
-		return (vec);
+		return (NULL);
 	mem_index = get_index(index, vec->content_len) * vec->size;
 	vec->content_len--;
 	src = &vec->buffer[mem_index];
