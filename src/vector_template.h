@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:04:01 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:56 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_vec
 	size_t	len;
 	size_t	size;
 	size_t	rate;
-	size_t	content_len;
+	size_t	alloc_len;
 	void	*buffer;
 }	t_vec;
 

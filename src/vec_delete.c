@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:40:37 by awillems          #+#    #+#             */
-/*   Updated: 2022/05/30 15:44:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	*ft_memset(void *b, int c, size_t len);
  */
 void	vec_delete(t_vec *vec)
 {
-	ft_memset(vec->buffer, 0, vec->size * vec->len);
-	vec->content_len = 0;
+	ft_memset(vec->buffer, 0, vec->size * vec->alloc_len);
+	vec->len = 0;
 }
 
 /**
- * @brief Free the vector and set `vec->len` to `0`.
+ * @brief Free the vector and set `vec->alloc_len` to `0`.
  */
 void	vec_destroy(t_vec *vec)
 {
+	vec->alloc_len = 0;
 	vec->len = 0;
-	vec->content_len = 0;
 	free(vec->buffer);
 }

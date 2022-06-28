@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 15:05:51 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/06 13:31:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:57:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	vec_is_empty(t_vec *vec, size_t index)
 {
 	size_t	i;
 
-	if (index >= vec->len)
+	if (index >= vec->alloc_len)
 		return (1);
 	i = 0;
 	while (i < vec->size)

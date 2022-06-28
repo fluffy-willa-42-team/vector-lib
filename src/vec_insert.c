@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 08:20:03 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:13:09 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	init_option(t_vec *vec, t_vi_option *opt, size_t option)
 {
 	opt->nb = 1;
 	opt->option = option;
-	opt->index = get_index(va_arg(opt->arg_list, int), vec->content_len);
+	opt->index = get_index(va_arg(opt->arg_list, int), vec->len);
 	init_sep_opt(opt, SEP, &opt->sep, &opt->sep_len);
 	init_sep_opt(opt, SEP, &opt->multi_sep, &opt->multi_sep_len);
 	if (option & MULTI)
@@ -66,9 +66,9 @@ t_vec	*insert_elem(t_vec *vec, t_vi_option	*opt, char *str, size_t len)
 	if (!vec_resize_round(vec, len))
 		return (NULL);
 	ft_memmove(vec->buffer + opt->index + len, vec->buffer + opt->index,
-		vec->content_len - opt->index);
+		vec->len - opt->index);
 	ft_memmove(vec->buffer + opt->index, str, len);
-	vec->content_len += len;
+	vec->len += len;
 	opt->index += len;
 	return (vec);
 }
@@ -95,7 +95,7 @@ t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...)
 			return (NULL);
 		opt.i++;
 	}
-	if (opt.index != vec->content_len - 1)
+	if (opt.index != vec->len - 1)
 		if (!insert_elem(vec, &opt, opt.sep, opt.sep_len))
 			return (NULL);
 	va_end(opt.arg_list);

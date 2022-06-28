@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:55 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:42:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static t_vec	*vec_resize_strict(t_vec *vec, size_t rate)
 
 	if (!vec)
 		return (NULL);
-	new_buffer = malloc((vec->len + rate) * vec->size);
+	new_buffer = malloc((vec->alloc_len + rate) * vec->size);
 	if (!new_buffer)
 		return (NULL);
-	ft_memset(new_buffer, 0, (vec->len + rate) * vec->size);
-	ft_memmove(new_buffer, vec->buffer, vec->len * vec->size);
-	vec->len += rate;
+	ft_memset(new_buffer, 0, (vec->alloc_len + rate) * vec->size);
+	ft_memmove(new_buffer, vec->buffer, vec->alloc_len * vec->size);
+	vec->alloc_len += rate;
 	free(vec->buffer);
 	vec->buffer = new_buffer;
 	return (vec);
@@ -37,7 +37,7 @@ static t_vec	*vec_resize_strict(t_vec *vec, size_t rate)
 
 t_vec	*vec_resize_round(t_vec *vec, size_t new_len)
 {
-	if (vec->content_len + new_len + 1 > vec->len)
+	if (vec->len + new_len + 1 > vec->alloc_len)
 		return (vec_resize_strict(vec, ft_round_up(new_len, vec->rate)));
 	return (vec);
 }

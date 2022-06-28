@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 14:13:39 by mahadad           #+#    #+#             */
-/*   Updated: 2022/06/28 11:30:22 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ t_vec	*vec_pop(t_vec *vec, int index)
 	void	*src;
 	void	*dst;
 
-	if (!vec->content_len)
+	if (!vec->len)
 		return (NULL);
-	mem_index = get_index(index, vec->content_len) * vec->size;
-	vec->content_len--;
+	mem_index = get_index(index, vec->len) * vec->size;
+	vec->len--;
 	src = vec->buffer + mem_index;
 	dst = vec->buffer + mem_index + vec->size;
-	ft_memmove(src, dst, (vec->content_len * vec->size) - mem_index);
-	ft_memset(vec->buffer + vec->content_len * vec->size, '\0', vec->size);
+	ft_memmove(src, dst, (vec->len * vec->size) - mem_index);
+	ft_memset(vec->buffer + vec->len * vec->size, '\0', vec->size);
 	return (vec);
 }

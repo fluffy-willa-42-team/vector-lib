@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/02 11:00:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ static t_vec	*add_elem_in_vec(t_vec *vec, char *src, size_t len)
 {
 	if (!vec_resize_round(vec, len))
 		return (NULL);
-	ft_memmove(vec->buffer + vec->content_len, src, len);
-	vec->content_len += len;
+	ft_memmove(vec->buffer + vec->len, src, len);
+	vec->len += len;
 	return (vec);
 }
 
@@ -73,7 +73,7 @@ t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...)
 
 	va_start(opt.arg_list, option);
 	init_option(&opt, option);
-	if (vec->content_len != 0)
+	if (vec->len != 0)
 		if (!add_elem_in_vec(vec, opt.sep, opt.sep_len))
 			return (NULL);
 	opt.i = 0;
