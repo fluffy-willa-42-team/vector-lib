@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vec_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/24 11:43:34 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/06/28 10:12:12 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
-#include "stdio.h"
 #include <stdlib.h>
 
 void	*ft_memmove(void *dst, const void *src, size_t len);
@@ -21,7 +20,7 @@ t_vec	*vec_resize_cast(t_vec *vec, size_t new_size)
 {
 	char	*new_buffer;
 
-	if (vec->content_len * new_size > vec->len * vec->size)
+	if ((vec->content_len + 1) * new_size > vec->len * vec->size)
 	{
 		if (!vec)
 			return (NULL);
@@ -61,7 +60,7 @@ t_vec	*vec_cast(t_vec *vec, size_t new_size, int casting_function())
 				return (NULL);
 		ft_memset(vec->buffer + vec->content_len * new_size, 0,
 			vec->content_len * (old_size - new_size));
-		// vec->len = vec->len * (old_size / new_size) - 1;//TODO
+		vec->len = vec->len * (old_size / new_size);
 	}
 	return (vec);
 }
