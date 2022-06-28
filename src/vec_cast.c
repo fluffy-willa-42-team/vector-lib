@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 11:07:53 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:26:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ t_vec	*vec_cast(t_vec *vec, size_t new_size, int casting_function())
 
 	if (!vec_resize_cast(vec, new_size))
 		return (NULL);
-	i = (int[]){vec->content_len - 1, 0}[new_size <= old_size];
-	while ((int[]){i >= 0, i < (long) vec->content_len}[new_size <= old_size])
+	i = (int []){vec->content_len - 1, 0}[new_size <= old_size];
+	while ((int []){i >= 0, i < (long) vec->content_len}[new_size <= old_size])
 	{
-		if (!casting_function(vec->buffer + i * old_size, vec->buffer + i * new_size))
+		if (!casting_function(vec->buffer + i * old_size,
+				vec->buffer + i * new_size))
 			return (NULL);
-		i += (int[]){-1, 1}[new_size <= old_size];
+		i += (int []){-1, 1}[new_size <= old_size];
 	}
 	if (new_size <= old_size)
 		ft_memset(vec->buffer + vec->content_len * new_size, 0,
