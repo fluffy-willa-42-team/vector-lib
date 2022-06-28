@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 10:46:32 by awillems         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:00:27 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,28 @@ t_vec	*vec_cast(t_vec *vec, size_t new_size, int casting_function())
 
 	if (!vec_resize_cast(vec, new_size))
 		return (NULL);
-	if (new_size > old_size)
+	if (new_size <= old_size)
 	{
-		i = vec->content_len;
-		while (--i >= 0)
-			if (!casting_function(vec->buffer + i * old_size,
-					vec->buffer + i * new_size))
+		i = 0;
+		while (i < (long) vec->content_len)
+		{
+			if (!casting_function(vec->buffer + i * old_size, vec->buffer + i * new_size))
 				return (NULL);
+			i++;
+		}
 	}
 	else
 	{
-		i = -1;
-		while (++i < (long) vec->content_len)
-			if (!casting_function(vec->buffer + i * old_size,
-					vec->buffer + i * new_size))
+		i = vec->content_len - 1;
+		while (i >= 0)
+		{
+			if (!casting_function(vec->buffer + i * old_size, vec->buffer + i * new_size))
 				return (NULL);
+			i--;
+		}
+	}
+	if (new_size <= old_size)
 		ft_memset(vec->buffer + vec->content_len * new_size, 0,
 			vec->content_len * (old_size - new_size));
-	}
 	return (vec);
 }
