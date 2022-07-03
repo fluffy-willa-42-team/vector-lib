@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_lib.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 13:56:40 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 17:10:52 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 
 /* ************************************************************************** */
 
-# define vec_init(type) {0, sizeof(type), V_DEFAULT_RATE, 0, NULL}
-# define vec_init_r(type, rate) {0, sizeof(type), rate, 0, NULL}
+# define vec_init(type) {0, sizeof(type), V_DEFAULT_RATE, 0, NULL, NULL}
+# define vec_init_r(type, rate) {0, sizeof(type), rate, 0, NULL, NULL}
 
 void	vec_delete(t_vec *vec);
 void	vec_destroy(t_vec *vec);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 13:58:37 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:52:06 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ t_vec	*vec_resize_cast(t_vec *vec, size_t new_size)
 			return (NULL);
 		new_buffer = malloc(vec->alloc_len * new_size);
 		if (!new_buffer)
+		{
+			if (vec->exit_func)
+				vec->exit_func();
 			return (NULL);
+		}
 		ft_memset(new_buffer, 0, vec->alloc_len * new_size);
 		ft_memmove(new_buffer, vec->buffer, vec->len * vec->size);
 		free(vec->buffer);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_template.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 13:58:56 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:51:55 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_vec
 	size_t	rate;
 	size_t	alloc_len;
 	void	*buffer;
+	void	(*exit_func)();
 }	t_vec;
 
 /* ************************************************************************** */

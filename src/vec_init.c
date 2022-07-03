@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/06/28 13:59:22 by awillems         ###   ########.fr       */
+/*   Updated: 2022/07/03 16:52:59 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ t_vec	empty_vec(void)
 	res.rate = 0;
 	res.alloc_len = 0;
 	res.buffer = NULL;
+	res.exit_func = NULL;
 	return (res);
 }
