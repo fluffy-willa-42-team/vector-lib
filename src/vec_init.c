@@ -24,3 +24,23 @@ t_vec	empty_vec(void)
 	res.exit_func = NULL;
 	return (res);
 }
+
+t_vec	vec_init(size_t size)
+{
+	t_vec	res;
+
+	res = empty_vec();
+	res.size = size;
+	res.rate = V_DEFAULT_RATE;
+	return (res);
+}
+
+t_vec	vec_init_r(size_t size, size_t rate)
+{
+	t_vec	res;
+
+	res = empty_vec();
+	res.size = size;
+	res.rate = rate;
+	return (res);
+}

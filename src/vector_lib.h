@@ -19,8 +19,8 @@
 
 /* ************************************************************************** */
 
-# define vec_init(type) {0, sizeof(type), V_DEFAULT_RATE, 0, NULL, NULL}
-# define vec_init_r(type, rate) {0, sizeof(type), rate, 0, NULL, NULL}
+t_vec	vec_init(size_t size);
+t_vec	vec_init_r(size_t size, size_t rate);
 
 void	vec_delete(t_vec *vec);
 void	vec_destroy(t_vec *vec);
@@ -31,8 +31,8 @@ void	*vec_get_raw(t_vec *vec, int index);
 t_vec	*vec_resize(t_vec *vec);
 t_vec	*vec_resize_round(t_vec *vec, size_t new_len);
 
-t_vec	*vec_add(t_vec	*vec, void *new_content);
-t_vec	*vec_add_n(t_vec	*vec, void *new_content, size_t nb_elem);
+t_vec	*vec_add(t_vec *vec, void *new_content);
+t_vec	*vec_add_n(t_vec *vec, void *new_content, size_t nb_elem);
 t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...);
 
 t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...);
