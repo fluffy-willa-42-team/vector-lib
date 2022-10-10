@@ -6,20 +6,18 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 12:10:58 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:17:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_TEMPLATE_H
 # define VECTOR_TEMPLATE_H
 
+/* ************************************************************************** */
+
 # include "unistd.h"
 
 /* ************************************************************************** */
-
-# ifdef WRA
-#  include "wraloc.h"
-# endif /* WRA */
 
 # define V_DEFAULT_RATE		64
 

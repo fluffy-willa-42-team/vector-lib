@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:34:34 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 12:15:11 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:16:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,19 @@ t_vec	empty_vec(void)
 	return (res);
 }
 
-t_vec	v_init_r(size_t size, int (*clear)(), int (*delete)(), size_t rate);
+t_vec	v_init_r(size_t size, int (*clear)(), int (*delete)(), size_t rate)
 {
+	t_vec	res;
+
+	res = empty_vec();
 	res.size = size;
 	res.rate = rate;
 	res.clear = clear;
 	res.delete = delete;
-	return (empty_vec());
+	return (res);
 }
 
-t_vec	v_init(size_t size, int (*clear)(), int (*delete)());
+t_vec	v_init(size_t size, int (*clear)(), int (*delete)())
 {
-	return (v_init_r(size, clear, delete));
+	return (v_init_r(size, clear, delete, V_DEFAULT_RATE));
 }
