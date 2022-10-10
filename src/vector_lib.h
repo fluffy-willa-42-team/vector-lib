@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 12:20:08 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:22:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 /* ************************************************************************** */
 
 # include "vector_template.h"
+#include <stdio.h>
 
 /* ************************************************************************** */
 
 t_vec	v_init(size_t size, int (*clear)(), int (*delete)());
 t_vec	v_init_r(size_t size, int (*clear)(), int (*delete)(), size_t rate);
 
-t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, unsigned int length);
+t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length);
 
-void	v_clear(t_vec *vec);
-void	v_delete(t_vec *vec);
+void	*v_clear(t_vec *vec);
+void	*v_delete(t_vec *vec);
 
 /* ************************************************************************** */
 
