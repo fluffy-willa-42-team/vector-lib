@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 12:21:37 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:58:20 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef enum s_alloc_opt
 typedef enum s_add_opt
 {
 	DEFAULT		= 0b000,
-	MULTI		= 0b001,
-	STRING		= 0b010,
+	STRING		= 0b001,
+	MULTI		= 0b010,
 	SEP			= 0b100
 }	t_add_opt;
 
