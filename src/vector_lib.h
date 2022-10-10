@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 12:17:30 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:20:08 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	*v_getr(t_vec *vec, int index);
 
 /* ************************************************************************** */
 
-t_vec	*v_add(t_vec *vec, t_fill_opt option, ...);
-t_vec	*v_insert(t_vec *vec, int pos, t_fill_opt option, ...);
+t_vec	*v_add(t_vec *vec, t_add_opt option, ...);
+t_vec	*v_insert(t_vec *vec, int pos, t_add_opt option, ...);
 
 t_vec	*v_pop(t_vec *vec, int index);
 

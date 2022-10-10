@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 12:17:43 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:21:37 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,13 @@ typedef enum s_alloc_opt
 	ROUND	= 0b10
 }	t_alloc_opt;
 
-
-typedef enum s_fill_opt
+typedef enum s_add_opt
 {
-	DEFAULT			= 0b0000,
-	SEP				= 0b0001,
-	MULTI			= 0b0100,
-	MULTI_SEP		= 0b0110,
-	MULTI_ALL_SEP	= 0b0111,
-	FIXED_LEN		= 0b1000
-}	t_fill_opt;
+	DEFAULT		= 0b000,
+	MULTI		= 0b001,
+	STRING		= 0b010,
+	SEP			= 0b100
+}	t_add_opt;
 
 /* ************************************************************************** */
 
