@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_cast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:45:50 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 16:52:06 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/10/10 11:23:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 
-t_vec	*vec_resize_cast(t_vec *vec, size_t new_size)
+static t_vec	*vec_resize_cast(t_vec *vec, size_t new_size)
 {
 	char	*new_buffer;
 
