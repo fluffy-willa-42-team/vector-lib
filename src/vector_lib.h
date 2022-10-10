@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_lib.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 17:10:52 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/10/10 12:12:46 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,33 +17,40 @@
 
 # include "vector_template.h"
 
+
 /* ************************************************************************** */
 
-t_vec	vec_init(size_t size);
-t_vec	vec_init_r(size_t size, size_t rate);
+t_vec	v_init(size_t size, int (*clear)(), int (*delete)());
+t_vec	v_init_r(size_t size, int (*clear)(), int (*delete)(), size_t rate);
 
-void	vec_delete(t_vec *vec);
-void	vec_destroy(t_vec *vec);
+t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, unsigned int length);
 
-void	*vec_get(t_vec *vec, int index);
-void	*vec_get_raw(t_vec *vec, int index);
+void	v_clear(t_vec *vec);
+void	v_delete(t_vec *vec);
 
-t_vec	*vec_resize(t_vec *vec);
-t_vec	*vec_resize_round(t_vec *vec, size_t new_len);
+/* ************************************************************************** */
 
-t_vec	*vec_add(t_vec *vec, void *new_content);
-t_vec	*vec_add_n(t_vec *vec, void *new_content, size_t nb_elem);
-t_vec	*vec_fill(t_vec *vec, t_fill_opt option, ...);
+void	*v_get(t_vec *vec, int index);
+void	*v_getr(t_vec *vec, int index);
 
-t_vec	*vec_insert(t_vec *vec, t_fill_opt option, ...);
-t_vec	*vec_pop(t_vec *vec, int index);
-void	vec_print(t_vec *vec);
+/* ************************************************************************** */
 
-int		vec_is_empty(t_vec *vec, int index);
+t_vec	*v_add(t_vec *vec, t_fill_opt option, ...);
+t_vec	*v_insert(t_vec *vec, int pos, t_fill_opt option, ...);
 
-t_vec	*vec_cast(t_vec *vec, size_t new_size, int casting_function());
+t_vec	*v_pop(t_vec *vec, int index);
 
-t_vec	*vec_add_itoa(t_vec *vec, int n);
+/* ************************************************************************** */
+
+void	v_print(t_vec *vec);
+
+/* ************************************************************************** */
+
+int		v_is_empty(t_vec *vec, int index);
+
+/* ************************************************************************** */
+
+t_vec	*v_cast(t_vec *vec, size_t new_size, int casting_function());
 
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_template.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
+/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/07/03 16:51:55 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/10/10 12:10:58 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 # endif /* WRA */
 
 # define V_DEFAULT_RATE		64
+
+/* ************************************************************************** */
+
+typedef enum s_alloc_opt
+{
+	SET		= 0b00,
+	TRUNC	= 0b01,
+	ROUND	= 0b10
+}	t_alloc_opt;
+
 
 typedef enum s_fill_opt
 {
@@ -42,7 +52,8 @@ typedef struct s_vec
 	size_t	rate;
 	size_t	alloc_len;
 	void	*buffer;
-	void	(*exit_func)();
+	int		(*clear)();
+	int		(*delete)();
 }	t_vec;
 
 /* ************************************************************************** */
