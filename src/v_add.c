@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 11:19:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:02:57 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ static t_vec	*v_insert_string(t_vec *vec, int pos, char *input, va_list args)
 				break;
 			input++;
 		}
-		else
-			v_insert_utils(vec, &pos, input, 1);
+		else if (!v_insert_utils(vec, &pos, input, 1))
+			break;
 		input++;
 	}
 	va_end(args);
-	return (NULL);	
+	if (*input != 0)
+		return (NULL);
+	return (vec);	
 }
 
 static t_vec	*v_insert_elem(t_vec *vec, int pos, int option, va_list args)
@@ -90,8 +92,8 @@ t_vec	*v_insert(t_vec *vec, int pos, t_add_opt option, ...)
 	va_start(args, option);
 	if (option & STRING)
 	{
-		if (pos != 0 && option & SEP)
-			v_insert_utils(vec, &pos, "", 1);
+		if (pos != 0 && option & SEP && !v_insert_utils(vec, &pos, "", 1))
+			return (NULL);
 		return (v_insert_string(vec, pos, va_arg(args, char *), args));
 	}
 	else
