@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 10:45:24 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:13:29 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,20 @@
 size_t	ft_strlen(const char *s);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 int		get_index(int index, int len);
+char	*ft_strchr(const char *s, int c);
+
+t_vec *v_add_str_prct(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_c(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_s(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_di(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_u(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_p(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_x(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_cap_x(t_vec *vec, int *pos, va_list args);
 
 t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length);
 
-static t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len)
+t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len)
 {
 	if (!v_alloc(vec, SET, vec->len + len))
 		return (NULL);
@@ -36,25 +46,19 @@ static t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len)
 
 static t_vec	*v_insert_string(t_vec *vec, int pos, char *input, va_list args)
 {
+	const  char *options = "%cspdiuxX";
+	static t_vec	*(*func[10])() = { v_add_str_prct, v_add_str_c, v_add_str_s,
+		v_add_str_p, v_add_str_di, v_add_str_di, v_add_str_u, v_add_str_x,
+		v_add_str_cap_x};
+
+	
 	while (*input)
 	{
-		if (*(input + 1) && *input == '%')
+		if (*(input + 1) && *input == '%' && ft_strchr(options, *(input + 1)))
 		{
-			if (*(input + 1) == '%')
-				v_insert_utils(vec, &pos, "%", 1);
-			else if (*(input + 1) == 'c')
-			{
-				char c = (char) va_arg(args, int);
-				v_insert_utils(vec, &pos, &c, 1);
-			}
-			else if (*(input + 1) == 's')
-			{
-				char *str = va_arg(args, char*);
-				v_insert_utils(vec, &pos, str, ft_strlen(str));
-			}
-			// else if (*(input + 1) == 'd' || *(input + 1) == 'i')
-			// else if (*(input + 1) == 'u')
-			// else if (*(input + 1) == 'h')
+			if (!func[ft_strchr(options, *(input + 1)) - options]
+				(vec, &pos, args))
+				break;
 			input++;
 		}
 		else
