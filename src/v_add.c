@@ -6,15 +6,12 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 14:11:26 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:30:47 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
-
 #include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
 
 char	*ft_strchr(const char *s, int c);
 int		get_index(int index, int len);

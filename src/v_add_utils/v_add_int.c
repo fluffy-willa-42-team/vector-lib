@@ -6,12 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:19:56 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 14:10:13 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:30:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
-
 #include <stdarg.h>
 
 t_vec	*v_add_itoa_base(t_vec *vec, int *pos, char *base, long number);

@@ -6,12 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:19:51 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 14:10:33 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:30:48 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
-
 #include <stdarg.h>
 
 size_t	ft_strlen(const char *s);
