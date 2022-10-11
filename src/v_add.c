@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 13:39:14 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:48:38 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <stdio.h>
 
 char	*ft_strchr(const char *s, int c);
+int		get_index(int index, int len);
 
 t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
 
@@ -81,10 +82,10 @@ t_vec	*v_insert(t_vec *vec, int pos, t_add_opt option, ...)
 	{
 		if (pos != 0 && option & SEP && !v_insert_utils(vec, &pos, "", 1))
 			return (NULL);
-		return (v_insert_string(vec, pos, va_arg(args, char *), args));
+		return (v_insert_string(vec, get_index(pos, vec->len), va_arg(args, char *), args));
 	}
 	else
-		return (v_insert_elem(vec, pos, option, args));
+		return (v_insert_elem(vec, get_index(pos, vec->len), option, args));
 }
 
 t_vec	*v_add(t_vec *vec, t_add_opt option, ...)
