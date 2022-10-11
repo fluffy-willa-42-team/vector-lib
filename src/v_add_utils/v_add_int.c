@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:19:56 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 12:21:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:40:50 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,14 @@
 
 #include <stdarg.h>
 
-size_t	ft_strlen(const char *s);
-t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
+t_vec	*v_add_itoa_base(t_vec *vec, int *pos, char *base, long number);
 
 t_vec	*v_add_str_di(t_vec *vec, int *pos, va_list args)
 {
-	(void) vec;
-	(void) pos;
-	(void) args;
-	return (NULL);
+	return (v_add_itoa_base(vec, pos, "0123456789", va_arg(args, int)));
 }
 
 t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args)
 {
-	(void) vec;
-	(void) pos;
-	(void) args;
-	return (NULL);
+	return (v_add_itoa_base(vec, pos, "0123456789", va_arg(args, unsigned int)));
 }

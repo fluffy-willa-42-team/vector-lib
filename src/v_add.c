@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 12:04:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 13:39:14 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@
 #include <unistd.h>
 #include <stdio.h>
 
-
-void	*ft_memmove(void *dst, const void *src, size_t len);
-int		get_index(int index, int len);
 char	*ft_strchr(const char *s, int c);
+
+t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
 
 t_vec	*v_add_str_prct(t_vec *vec, int *pos);
 t_vec	*v_add_str_c(t_vec *vec, int *pos, va_list args);
@@ -29,20 +28,6 @@ t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_x(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_cap_x(t_vec *vec, int *pos, va_list args);
-
-t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length);
-
-t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len)
-{
-	if (!v_alloc(vec, SET, vec->len + len))
-		return (NULL);
-	ft_memmove(vec->buffer + (*pos + len) * vec->size,
-		vec->buffer + *pos * vec->size, (vec->len - *pos) * vec->size);
-	ft_memmove(vec->buffer + *pos * vec->size, elem, len);
-	vec->len += len;
-	*pos += len;
-	return (vec);
-}
 
 static t_vec	*v_insert_string(t_vec *vec, int pos, char *input, va_list args)
 {
