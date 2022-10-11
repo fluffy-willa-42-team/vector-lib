@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 14:07:31 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:11:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_x(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_cap_x(t_vec *vec, int *pos, va_list args);
 
-//	v_add    0 - 0	v_insert_elem	0
-//			  \ /					 \ 
-//			   X					  0 - > v_insert_utils
-//			  / \					 /
-//	v_insert 0 - 0	v_insert_string	0
+/*
+v_add    0 - 0	v_insert_elem	0
+		  \ /					 \   
+		   X					  0 - > v_insert_utils
+		  / \					 /
+v_insert 0 - 0	v_insert_string	0
+*/
 
 static t_vec	*v_insert_string(t_vec *vec, int pos, char *input, va_list args)
 {

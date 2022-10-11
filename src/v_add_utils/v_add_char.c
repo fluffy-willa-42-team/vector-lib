@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:19:51 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 14:08:36 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:10:33 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 size_t	ft_strlen(const char *s);
 t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
+t_vec	*v_add_itoa_base(t_vec *vec, int *pos, char *base, long number);
 
 t_vec	*v_add_str_prct(t_vec *vec, int *pos)
 {
@@ -42,4 +43,12 @@ t_vec	*v_add_str_s(t_vec *vec, int *pos, va_list args)
 	if (!v_insert_utils(vec, pos, str, ft_strlen(str)))
 		return (NULL);
 	return (vec);
+}
+
+t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args)
+{
+	if (!v_insert_utils(vec, pos, "0x", 2))
+		return (NULL);
+	return (v_add_itoa_base(vec, pos, "0123456789abcdef",
+			va_arg(args, long long)));
 }
