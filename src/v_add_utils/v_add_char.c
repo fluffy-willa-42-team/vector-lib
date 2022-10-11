@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   v_add_str_utils.c                                  :+:      :+:    :+:   */
+/*   v_add_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 10:49:27 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 12:17:40 by awillems         ###   ########.fr       */
+/*   Created: 2022/10/11 12:19:51 by awillems          #+#    #+#             */
+/*   Updated: 2022/10/11 12:20:34 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
 
 #include <stdarg.h>
-#include <unistd.h>
-#include <stdio.h>
 
 size_t	ft_strlen(const char *s);
 t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
@@ -40,44 +38,4 @@ t_vec	*v_add_str_s(t_vec *vec, int *pos, va_list args)
 	if (!v_insert_utils(vec, pos, str, ft_strlen(str)))
 		return (NULL);
 	return (vec);
-}
-
-t_vec	*v_add_str_di(t_vec *vec, int *pos, va_list args)
-{
-	(void) vec;
-	(void) pos;
-	(void) args;
-	return (NULL);
-}
-
-t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args)
-{
-	(void) vec;
-	(void) pos;
-	(void) args;
-	return (NULL);
-}
-
-t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args)
-{
-	(void) vec;
-	(void) pos;
-	(void) args;
-	return (NULL);
-}
-
-t_vec	*v_add_str_x(t_vec *vec, int *pos, va_list args)
-{
-	(void) vec;
-	(void) pos;
-	(void) args;
-	return (NULL);
-}
-
-t_vec	*v_add_str_cap_x(t_vec *vec, int *pos, va_list args)
-{
-	(void) vec;
-	(void) pos;
-	(void) args;
-	return (NULL);
 }
