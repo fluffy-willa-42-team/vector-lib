@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 14:01:10 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:07:31 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ t_vec	*v_insert(t_vec *vec, int pos, t_add_opt option, ...)
 	{
 		if (pos != 0 && option & SEP && !v_insert_utils(vec, &pos, "", 1))
 			return (NULL);
-		return (v_insert_string(vec, get_index(pos, vec->len), va_arg(args, char *), args));
+		return (v_insert_string(vec, get_index(pos, vec->len),
+				va_arg(args, char *), args));
 	}
 	else
 		return (v_insert_elem(vec, get_index(pos, vec->len), option, args));

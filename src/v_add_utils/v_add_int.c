@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:19:56 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 13:40:50 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:07:41 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_vec	*v_add_str_di(t_vec *vec, int *pos, va_list args)
 
 t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args)
 {
-	return (v_add_itoa_base(vec, pos, "0123456789", va_arg(args, unsigned int)));
+	return (v_add_itoa_base(vec, pos, "0123456789",
+			va_arg(args, unsigned int)));
 }
