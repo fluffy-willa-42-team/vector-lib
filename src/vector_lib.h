@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:33:10 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 12:05:42 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 14:05:36 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_vec	*v_pop(t_vec *vec, int index);
 
 void	v_print(t_vec *vec);
 
-int		v_is_empty(t_vec *vec, int index);
+int		v_is_empty(t_vec *vec, size_t index);
 
 t_vec	*v_cast(t_vec *vec, size_t new_size, int casting_function());
 
