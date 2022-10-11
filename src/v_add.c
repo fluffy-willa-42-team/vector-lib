@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 11:13:29 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:19:42 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include <unistd.h>
 #include <stdio.h>
 
-size_t	ft_strlen(const char *s);
+
 void	*ft_memmove(void *dst, const void *src, size_t len);
 int		get_index(int index, int len);
 char	*ft_strchr(const char *s, int c);
 
-t_vec *v_add_str_prct(t_vec *vec, int *pos, va_list args);
+t_vec *v_add_str_prct(t_vec *vec, int *pos);
 t_vec *v_add_str_c(t_vec *vec, int *pos, va_list args);
 t_vec *v_add_str_s(t_vec *vec, int *pos, va_list args);
 t_vec *v_add_str_di(t_vec *vec, int *pos, va_list args);
@@ -51,7 +51,6 @@ static t_vec	*v_insert_string(t_vec *vec, int pos, char *input, va_list args)
 		v_add_str_p, v_add_str_di, v_add_str_di, v_add_str_u, v_add_str_x,
 		v_add_str_cap_x};
 
-	
 	while (*input)
 	{
 		if (*(input + 1) && *input == '%' && ft_strchr(options, *(input + 1)))
