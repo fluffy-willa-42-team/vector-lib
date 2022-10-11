@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 14:59:55 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:45:24 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,33 @@ static t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len)
 	return (vec);
 }
 
-static t_vec	*v_insert_string(t_vec *vec, int pos, int option, va_list args)
+static t_vec	*v_insert_string(t_vec *vec, int pos, char *input, va_list args)
 {
-	(void) vec;
-	(void) pos;
-	(void) option;
-	
+	while (*input)
+	{
+		if (*(input + 1) && *input == '%')
+		{
+			if (*(input + 1) == '%')
+				v_insert_utils(vec, &pos, "%", 1);
+			else if (*(input + 1) == 'c')
+			{
+				char c = (char) va_arg(args, int);
+				v_insert_utils(vec, &pos, &c, 1);
+			}
+			else if (*(input + 1) == 's')
+			{
+				char *str = va_arg(args, char*);
+				v_insert_utils(vec, &pos, str, ft_strlen(str));
+			}
+			// else if (*(input + 1) == 'd' || *(input + 1) == 'i')
+			// else if (*(input + 1) == 'u')
+			// else if (*(input + 1) == 'h')
+			input++;
+		}
+		else
+			v_insert_utils(vec, &pos, input, 1);
+		input++;
+	}
 	va_end(args);
 	return (NULL);	
 }
@@ -61,22 +82,32 @@ static t_vec	*v_insert_elem(t_vec *vec, int pos, int option, va_list args)
 
 t_vec	*v_insert(t_vec *vec, int pos, t_add_opt option, ...)
 {
-	va_list arg_list;
+	va_list args;
 
-	va_start(arg_list, option);
+	va_start(args, option);
 	if (option & STRING)
-		return (v_insert_string(vec, pos, option, arg_list));
+	{
+		if (pos != 0 && option & SEP)
+			v_insert_utils(vec, &pos, "", 1);
+		return (v_insert_string(vec, pos, va_arg(args, char *), args));
+	}
 	else
-		return (v_insert_elem(vec, pos, option, arg_list));
+		return (v_insert_elem(vec, pos, option, args));
 }
 
 t_vec	*v_add(t_vec *vec, t_add_opt option, ...)
 {
-	va_list arg_list;
+	va_list args;
+	int pos;
 
-	va_start(arg_list, option);
+	va_start(args, option);
 	if (option & STRING)
-		return (v_insert_string(vec, vec->len, option, arg_list));
+	{
+		pos = vec->len;
+		if (pos != 0 && option & SEP)
+			v_insert_utils(vec, &pos, "", 1);
+		return (v_insert_string(vec, pos, va_arg(args, char *), args));
+	}
 	else
-		return (v_insert_elem(vec, vec->len, option, arg_list));
+		return (v_insert_elem(vec, vec->len, option, args));
 }
