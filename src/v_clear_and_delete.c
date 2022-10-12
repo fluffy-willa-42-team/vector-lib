@@ -6,14 +6,12 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:36:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/12 09:49:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:39:51 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
 #include <stdlib.h>
-#include <stdio.h>
-
 
 void	*ft_memset(void *b, int c, size_t len);
 void	*v_getr(t_vec *vec, int index);

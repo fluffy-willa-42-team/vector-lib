@@ -6,12 +6,11 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:21:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/12 11:20:23 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:40:00 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
-#include <stdio.h>
 
 t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length);
 
