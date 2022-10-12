@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 13:37:21 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 13:39:59 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:33:06 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len)
 		return (NULL);
 	ft_memmove(vec->buffer + (*pos + len) * vec->size,
 		vec->buffer + *pos * vec->size, (vec->len - *pos) * vec->size);
-	ft_memmove(vec->buffer + *pos * vec->size, elem, len);
+	ft_memmove(vec->buffer + *pos * vec->size, elem, len * vec->size);
 	vec->len += len;
 	*pos += len;
 	return (vec);
