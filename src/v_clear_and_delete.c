@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:36:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/12 09:47:39 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:49:02 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,19 @@ void	*v_getr(t_vec *vec, int index);
 /**
  * @brief Set all buffer to `\0`.
  */
-void	v_clear(t_vec *vec)
+int	v_clear(t_vec *vec)
 {
+	if (vec->clear)
+	{
+		size_t i = -1;
+		while (++i < vec->len)
+			if (!vec->clear(v_getr(vec, i)))
+				return (0);
+		return (1);
+	}
 	ft_memset(vec->buffer, 0, vec->size * vec->alloc_len);
 	vec->len = 0;
+	return (1);
 }
 
 /**
