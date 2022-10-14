@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:30 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 14:30:47 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/14 09:13:26 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_x(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_cap_x(t_vec *vec, int *pos, va_list args);
+t_vec	*v_add_str_prec(t_vec *vec, int *pos, va_list args, char **input);
 
 /*
 v_add    0 - 0	v_insert_elem	0
@@ -37,17 +38,17 @@ v_insert 0 - 0	v_insert_string	0
 
 static t_vec	*v_insert_string(t_vec *vec, int pos, char *input, va_list args)
 {
-	const char		*options = "%cspdiuxX";
+	const char		*options = "%cspdiuxX.";
 	static t_vec	*(*func[10])() = {v_add_str_prct, v_add_str_c, v_add_str_s,
 		v_add_str_p, v_add_str_di, v_add_str_di, v_add_str_u, v_add_str_x,
-		v_add_str_cap_x};
+		v_add_str_cap_x, v_add_str_prec};
 
 	while (*input)
 	{
 		if (*(input + 1) && *input == '%' && ft_strchr(options, *(input + 1)))
 		{
 			if (!func[ft_strchr(options, *(input + 1)) - options]
-				(vec, &pos, args))
+				(vec, &pos, args, &input))
 				break ;
 			input++;
 		}
