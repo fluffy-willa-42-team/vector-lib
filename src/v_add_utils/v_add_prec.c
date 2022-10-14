@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 08:43:42 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/14 09:43:07 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:01:22 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,53 +33,53 @@ t_vec	*v_add_str_s_prec(t_vec *vec, int *pos, va_list args, unsigned int prec)
 	char	*str;
 
 	str = va_arg(args, char *);
-	if (!str && !v_insert_utils(vec, pos, "(null)", 6))
+	if (!str && !v_insert_utils(vec, pos, "(null)", prec))
 		return (NULL);
 	if (!v_insert_utils(vec, pos, str, prec))
 		return (NULL);
 	return (vec);
 }
 
-unsigned int	ft_atoui(const char *str, unsigned int *i)
+unsigned int	ft_atoui(char **str)
 {
 	unsigned long int	res;
 
 	res = 0;
-	while (str[*i] && str[*i] >= '0' && str[*i] <= '9')
+	while (*(*str + 2) && *(*str + 2) >= '0' && *(*str + 2) <= '9')
 	{
-		if (res > LONG_MAX / 10 && str[*i] - 48 > (LONG_MAX % 10))
+		if (res > LONG_MAX / 10 && *(*str + 2) - 48 > (LONG_MAX % 10))
 			return (0);
-		res = res * 10 + (str[*i] - 48);
-		(*i)++;
+		res = res * 10 + (*(*str + 2) - 48);
+		(*str)++;
 	}
 	return (res);
 }
 
 t_vec	*v_add_str_prec(t_vec *vec, int *pos, va_list args, char **input)
 {
+	char			*save;
 	const char		*options = "%cspdiuxX";
 	static t_vec	*(*func[10])() = {v_add_str_prct, v_add_str_c,
 		v_add_str_s, v_add_str_p, v_add_str_di, v_add_str_di, v_add_str_u,
 		v_add_str_x, v_add_str_cap_x};
 	unsigned int	precision;
-	unsigned int	decal;
 
-	decal = 0;
+	save = *input;
 	if (*(*input + 2) && *(*input + 2) == '*')
 	{
-		decal = 1;
+		(*input)++;
 		precision = va_arg(args, unsigned int);
 	}
 	else
-		precision = ft_atoui(*input + 2, &decal);
-	if (*(*input + 2 + decal) && ft_strchr(options, *(*input + 2 + decal)))
+		precision = ft_atoui(input);
+	if (*(*input + 2) && ft_strchr(options, *(*input + 2)))
 	{
-		if (!func[ft_strchr(options, *(*input + 2 + decal)) - options](vec, pos, args, precision))
+		if (!func[ft_strchr(options, *(*input + 2)) - options]
+			(vec, pos, args, precision))
 			return (NULL);
 		(*input)++;
 	}
-	else if (!v_insert_utils(vec, pos, *input, decal))
+	else if (!v_insert_utils(vec, pos, save, *input - save + 2))
 		return (NULL);
-	*input += decal;
 	return (vec);
 }
