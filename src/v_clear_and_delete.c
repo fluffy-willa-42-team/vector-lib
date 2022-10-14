@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:36:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/12 11:39:51 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:15:17 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@ void	*v_getr(t_vec *vec, int index);
  */
 int	v_clear(t_vec *vec)
 {
+	size_t	i;
+
 	if (vec->clear)
 	{
-		size_t i = -1;
+		i = -1;
 		while (++i < vec->len)
 			if (!vec->clear(v_getr(vec, i)))
 				return (0);
@@ -39,9 +41,11 @@ int	v_clear(t_vec *vec)
  */
 int	v_delete(t_vec *vec)
 {
+	size_t	i;
+
 	if (vec->delete)
 	{
-		size_t i = -1;
+		i = -1;
 		while (++i < vec->len)
 			vec->delete(v_getr(vec, i));
 	}

@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:21:31 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/12 11:40:00 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:15:35 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length);
 t_vec	*v_cast(t_vec *vec, size_t new_size, int casting_function())
 {
 	const size_t	old_size = vec->size;
-	long	i;
+	long			i;
 
 	if (!vec || !casting_function)
 		return (NULL);
@@ -26,7 +26,8 @@ t_vec	*v_cast(t_vec *vec, size_t new_size, int casting_function())
 	i = (int []){vec->len - 1, 0}[new_size <= old_size];
 	while ((int []){i >= 0, i < (long) vec->len}[new_size <= old_size])
 	{
-		if (!casting_function(vec->buffer + i * old_size, vec->buffer + i * new_size))
+		if (!casting_function(vec->buffer + i * old_size,
+				vec->buffer + i * new_size))
 			return (NULL);
 		i += (int []){-1, 1}[new_size <= old_size];
 	}

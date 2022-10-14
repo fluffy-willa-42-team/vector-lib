@@ -6,13 +6,12 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 08:43:42 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/14 10:09:06 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:16:07 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector_template.h"
 #include <stdarg.h>
-#include <stdio.h>
 #include <limits.h>
 
 char	*ft_strchr(const char *s, int c);
@@ -21,7 +20,6 @@ t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
 
 t_vec	*v_add_str_prct(t_vec *vec, int *pos);
 t_vec	*v_add_str_c(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_s(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_di(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args);
 t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args);
