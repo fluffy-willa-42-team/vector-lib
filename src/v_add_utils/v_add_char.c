@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:19:51 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/11 15:09:25 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:09:41 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ t_vec	*v_add_str_s(t_vec *vec, int *pos, va_list args)
 	char	*str;
 
 	str = va_arg(args, char *);
-	if (!str && !v_insert_utils(vec, pos, "(null)", 6))
-		return (NULL);
-	if (!v_insert_utils(vec, pos, str, ft_strlen(str)))
+	if (str == NULL)
+	{
+		if (!v_insert_utils(vec, pos, "(null)", 6))
+			return (NULL);
+	}
+	else if (!v_insert_utils(vec, pos, str, ft_strlen(str)))
 		return (NULL);
 	return (vec);
 }

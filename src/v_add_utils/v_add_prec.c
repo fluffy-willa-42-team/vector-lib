@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 08:43:42 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/14 10:01:22 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/14 10:09:06 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ t_vec	*v_add_str_s_prec(t_vec *vec, int *pos, va_list args, unsigned int prec)
 	char	*str;
 
 	str = va_arg(args, char *);
-	if (!str && !v_insert_utils(vec, pos, "(null)", prec))
-		return (NULL);
-	if (!v_insert_utils(vec, pos, str, prec))
+	if (str == NULL)
+	{
+		if (!v_insert_utils(vec, pos, "(null)", prec))
+			return (NULL);
+	}
+	else if (!v_insert_utils(vec, pos, str, prec))
 		return (NULL);
 	return (vec);
 }
 
-unsigned int	ft_atoui(char **str)
+static unsigned int	ft_atoui(char **str)
 {
 	unsigned long int	res;
 
@@ -60,7 +63,7 @@ t_vec	*v_add_str_prec(t_vec *vec, int *pos, va_list args, char **input)
 	char			*save;
 	const char		*options = "%cspdiuxX";
 	static t_vec	*(*func[10])() = {v_add_str_prct, v_add_str_c,
-		v_add_str_s, v_add_str_p, v_add_str_di, v_add_str_di, v_add_str_u,
+		v_add_str_s_prec, v_add_str_p, v_add_str_di, v_add_str_di, v_add_str_u,
 		v_add_str_x, v_add_str_cap_x};
 	unsigned int	precision;
 
