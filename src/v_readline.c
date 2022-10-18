@@ -28,6 +28,7 @@ void print_buf(char *buf)
 {
 	size_t	i;
 
+	write(1, "    BUF=  ", 10);
 	i = 0;
 	while (i < RDLINE_BUF_SIZE)
 	{
@@ -52,49 +53,55 @@ static int	len_to_copy(char *str)
 			return (i);
 		i++;
 	}
-	return (RDLINE_BUF_SIZE);
+	return (-1);
 }
 
-static t_vec *move_into_buf(t_vec *vec, char *buf)
+static int move_into_buf(t_vec *vec, char *buf)
 {
 	int len;
+	int has_the_end;
 	
 	len = len_to_copy(buf);
+	if (len == -1)
+		len = RDLINE_BUF_SIZE;
+	has_the_end = 0;
 	if (!v_add(vec, STRING, "%.*s", len, buf))
-		return (NULL);
+		return (0);
+	if (len_to_copy(buf) != -1 && buf[len_to_copy(buf)] == '\n')
+	{
+		len++;
+		has_the_end = 1;
+	}
 	ft_memmove(buf, buf + len, RDLINE_BUF_SIZE - len);
 	ft_memset(buf + RDLINE_BUF_SIZE - len, 0, len);
-	return (vec);
+	if (has_the_end)
+		return (2);
+	return (1);
 }
 
-/*
-  len SIZE-len
-******OOO => OOO______
-********* => _________
-*000_____ => 000______
-****_____ => _________
-*/
 t_vec	*v_readline(t_vec *vec, int fd)
 {
 	static char	buf[RDLINE_MAX_FD][RDLINE_BUF_SIZE];
 	ssize_t		char_read;
+	int 		has_the_end;
 
 	if (!vec || fd < 0)
+		return (0);
+	has_the_end = move_into_buf(vec, buf[fd]);
+	if (!has_the_end)
 		return (NULL);
-	if (!move_into_buf(vec, buf[fd]))
+	if (has_the_end == 2)
+		return (vec);
+	char_read = read(fd, buf[fd], RDLINE_BUF_SIZE);
+	if (char_read <= 0)
 		return (NULL);
-	char_read = -1;
-	while (
-		char_read == -1 || (char_read != 0 && (char_read == RDLINE_BUF_SIZE ||
-		(v_get(vec, -1) && *(char *) v_get(vec, -1) != 0
-		&& *(char *) v_get(vec, -1) != '\n')))
-	)
+	while (len_to_copy(buf[fd]) <= 0)
 	{
-		char_read = read(fd, buf[fd], RDLINE_BUF_SIZE);
 		if (char_read == -1)
 			return (NULL);
-		if (!move_into_buf(vec, buf[fd]))
-			return (NULL);
+		move_into_buf(vec, buf[fd]);
+		char_read = read(fd, buf[fd], RDLINE_BUF_SIZE);
 	}
+	move_into_buf(vec, buf[fd]);
 	return (vec);
 }

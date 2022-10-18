@@ -47,7 +47,7 @@ int		v_is_empty(t_vec *vec, size_t index);
 
 t_vec	*v_cast(t_vec *vec, size_t new_size, int casting_function());
 
-t_vec	*v_readline(t_vec *vec, int fd);
+int		v_readline(t_vec *vec, int fd);
 
 /* ************************************************************************** */
 
