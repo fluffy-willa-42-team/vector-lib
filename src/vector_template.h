@@ -21,8 +21,7 @@
 
 # define V_DEFAULT_RATE		64
 
-# define RDLINE_MAX_FD		1000
-# define RDLINE_BUF_SIZE	8
+# define RDLINE_BUF_SIZE	5000
 
 /* ************************************************************************** */
 
