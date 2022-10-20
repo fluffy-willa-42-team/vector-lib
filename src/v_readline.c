@@ -77,7 +77,7 @@ static int move_into_buf(t_vec *vec, char *buf, char *last_char, int *has_print)
 
 int	v_readline(t_vec *vec, int fd)
 {
-	static char	buf[RDLINE_MAX_FD][RDLINE_BUF_SIZE];
+	static char	buf[RDLINE_BUF_SIZE];
 	ssize_t		char_read;
 	char 		c;
 	int 		has_printed;
@@ -85,22 +85,22 @@ int	v_readline(t_vec *vec, int fd)
 	if (!vec || fd < 0)
 		return (0);
 	has_printed = 0;
-	if (!move_into_buf(vec, buf[fd], &c, &has_printed))
+	if (!move_into_buf(vec, buf, &c, &has_printed))
 		return (-1);
 	if (c == '\n')
 		return (1);
-	char_read = read(fd, buf[fd], RDLINE_BUF_SIZE);
+	char_read = read(fd, buf, RDLINE_BUF_SIZE);
 	if (!has_printed && char_read <= 0)
 		return (0);
-	while (len_to_copy(buf[fd]) < 0)
+	while (len_to_copy(buf) < 0)
 	{
 		if (char_read == -1)
 			return (0);
-		if (!move_into_buf(vec, buf[fd], &c, &has_printed))
+		if (!move_into_buf(vec, buf, &c, &has_printed))
 			return (-1);
-		char_read = read(fd, buf[fd], RDLINE_BUF_SIZE);
+		char_read = read(fd, buf, RDLINE_BUF_SIZE);
 	}
-	if (!move_into_buf(vec, buf[fd], &c, &has_printed))
+	if (!move_into_buf(vec, buf, &c, &has_printed))
 		return (-1);
 	return (1);
 }
