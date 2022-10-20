@@ -47,7 +47,7 @@ int	v_delete(t_vec *vec)
 	{
 		i = -1;
 		while (++i < vec->len)
-			vec->delete(v_getr(vec, i));
+			vec->delete(v_getr(vec, i));//TODO check return value.
 	}
 	vec->alloc_len = 0;
 	vec->len = 0;
