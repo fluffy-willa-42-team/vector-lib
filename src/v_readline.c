@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:19:28 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/14 11:34:35 by awillems         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:53:41 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	v_readline(t_vec *vec, int fd)
 		return (0);
 	has_printed = 0;
 	if (!move_into_buf(vec, buf[fd], &c, &has_printed))
-		return (0);
+		return (-1);
 	if (c == '\n')
 		return (1);
 	char_read = read(fd, buf[fd], RDLINE_BUF_SIZE);
@@ -96,9 +96,11 @@ int	v_readline(t_vec *vec, int fd)
 	{
 		if (char_read == -1)
 			return (0);
-		move_into_buf(vec, buf[fd], &c, &has_printed);
+		if (!move_into_buf(vec, buf[fd], &c, &has_printed))
+			return (-1);
 		char_read = read(fd, buf[fd], RDLINE_BUF_SIZE);
 	}
-	move_into_buf(vec, buf[fd], &c, &has_printed);
+	if (!move_into_buf(vec, buf[fd], &c, &has_printed))
+		return (-1);
 	return (1);
 }
