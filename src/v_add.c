@@ -72,11 +72,14 @@ static t_vec	*v_insert_elem(t_vec *vec, int pos, int option, va_list args)
 	while (nb > 0)
 	{
 		if (!v_insert_utils(vec, &pos, va_arg(args, void *), 1))
-			break ;
+		{
+			va_end(args);
+			return (NULL);
+		}
 		nb--;
 	}
 	va_end(args);
-	return (NULL);
+	return (vec);
 }
 
 t_vec	*v_insert(t_vec *vec, int pos, t_add_opt option, ...)
