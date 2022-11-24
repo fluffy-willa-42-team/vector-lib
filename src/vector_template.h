@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_template.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 16:05:49 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/12 11:53:31 by awillems         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:16:05 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ typedef struct s_vec
 	int		(*clear)();
 	int		(*delete)();
 }	t_vec;
+
+typedef struct s_readline
+{
+	ssize_t		char_read;
+	char		c;
+	int			has_printed;
+}				t_readline;
 
 /* ************************************************************************** */
 
