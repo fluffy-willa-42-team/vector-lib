@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   v_clear_and_delete.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:36:43 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/14 10:15:17 by awillems         ###   ########.fr       */
+/*   Updated: 2022/11/24 16:53:07 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ int	v_clear(t_vec *vec)
 
 /**
  * @brief Free the vector and set `vec->alloc_len` to `0`.
+ * 
+ * @warning When the `vec->delete` function ptr is set, `v_delete` will
+ *          check each call if the function return a error (non null value).
+ *         `v_delete` will directly return a non null value when `v->delete`
+ *          return an error.
+ *          The items in the array before the error will not be deleted.
+ * 
+ * @return int Null value if there are no error, otherwise return non null value.
  */
 int	v_delete(t_vec *vec)
 {
@@ -47,11 +55,12 @@ int	v_delete(t_vec *vec)
 	{
 		i = -1;
 		while (++i < vec->len)
-			vec->delete(v_getr(vec, i));//TODO check return value.
+			if (vec->delete(v_getr(vec, i)) != 0)
+				return (1);
 	}
 	vec->alloc_len = 0;
 	vec->len = 0;
 	free(vec->buffer);
 	vec->buffer = NULL;
-	return (1);
+	return (0);
 }
