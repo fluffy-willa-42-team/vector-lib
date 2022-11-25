@@ -1,5 +1,7 @@
 # Vector-lib
 
+![norminette](https://github.com/fluffy-willa-42-team/vector-lib/actions/workflows/norminette.yml/badge.svg?branch=patch_norm)
+
 This a simple vector library where the alloc are done for you. There is two mode of use :
 
 - Use the vector as a string (array of char) wher you will be able to use vec_fill and all it's mode.
