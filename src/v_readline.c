@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:19:28 by awillems          #+#    #+#             */
-/*   Updated: 2022/11/24 17:17:06 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/11/25 16:05:30 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int	v_readline(t_vec *vec, int fd)
 	data.has_printed = 0;
 	if (!move_into_buf(vec, buf, &data.c, &data.has_printed))
 		return (-1);
-	if (&data.c == '\n')
+	if (data.c == '\n')
 		return (1);
 	data.char_read = read(fd, buf, RDLINE_BUF_SIZE);
 	if (!data.has_printed && data.char_read <= 0)
