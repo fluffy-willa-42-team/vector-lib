@@ -6,7 +6,7 @@
 /*   By: mahadad <mahadad@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:19:28 by awillems          #+#    #+#             */
-/*   Updated: 2022/11/25 16:05:30 by mahadad          ###   ########.fr       */
+/*   Updated: 2022/11/29 09:13:14 by mahadad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int	v_readline(t_vec *vec, int fd)
 		return (1);
 	data.char_read = read(fd, buf, RDLINE_BUF_SIZE);
 	if (!data.has_printed && data.char_read <= 0)
-		return (-1);
+		return (0);
 	return (readline_while(vec, buf, fd, &data));
 }
