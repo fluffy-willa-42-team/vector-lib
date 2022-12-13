@@ -6,7 +6,7 @@
 /*   By: awillems <awillems@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:47:20 by awillems          #+#    #+#             */
-/*   Updated: 2022/10/10 13:52:02 by awillems         ###   ########.fr       */
+/*   Updated: 2022/12/13 11:27:43 by awillems         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*v_get(t_vec *vec, int index)
  */
 void	*v_getr(t_vec *vec, int index)
 {
-	if (!vec || index < 0 || vec->len <= (size_t) index)
+	if (!vec || index < 0 || vec->len >= (size_t) index)
 		return (NULL);
 	return (vec->buffer + index * vec->size);
 }
