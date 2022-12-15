@@ -29,7 +29,7 @@ void	*v_get(t_vec *vec, int index)
  */
 void	*v_getr(t_vec *vec, int index)
 {
-	if (!vec || index < 0 || vec->len >= (size_t) index)
+	if (!vec || index < 0 || (size_t) index >= vec->size)
 		return (NULL);
 	return (vec->buffer + index * vec->size);
 }
