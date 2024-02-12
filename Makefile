@@ -231,10 +231,6 @@ git:
 	@git commit -am "Makefile push `date +'%Y-%m-%d %H:%M:%S'`"
 	@-git push
 
-willa:
-	git config user.name "willaCS"
-	git config user.email "arthur.willems.prive@gmail.com"
-
 # **************************************************************************** #
 
 .PHONY: remove_stuff, update_lib, update, ping, ping_lib, git
