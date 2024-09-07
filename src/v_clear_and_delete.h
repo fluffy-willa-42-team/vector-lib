@@ -1,0 +1,5 @@
+#ifndef V_CLEAR_AND_DELETE
+#define V_CLEAR_AND_DELETE
+
+
+#endif /* V_CLEAR_AND_DELETE */
