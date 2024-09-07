@@ -13,8 +13,6 @@
 #include "vector_template.h"
 #include <unistd.h>
 
-int	ft_isprint(int c);
-
 void	v_print(t_vec *vec)
 {
 	size_t	i;

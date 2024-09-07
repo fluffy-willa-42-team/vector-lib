@@ -14,15 +14,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void	*ft_memset(void *b, int c, size_t len);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-
-void	*v_get(t_vec *vec, int index);
-t_vec	*v_add(t_vec *vec, t_add_opt option, ...);
-void	v_print(t_vec *vec);
-
-int		ft_isprint(int c);
-
 void	print_buf(char *buf)
 {
 	size_t	i;

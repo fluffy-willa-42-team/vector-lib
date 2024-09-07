@@ -12,10 +12,6 @@
 
 #include "vector_template.h"
 
-size_t	ft_strlen(const char *s);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length);
-
 t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len)
 {
 	if (!v_alloc(vec, SET, vec->len + len))

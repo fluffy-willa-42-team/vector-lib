@@ -13,10 +13,6 @@
 #include "vector_template.h"
 #include <stdarg.h>
 
-size_t	ft_strlen(const char *s);
-t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
-t_vec	*v_add_itoa_base(t_vec *vec, int *pos, char *base, long number);
-
 t_vec	*v_add_str_prct(t_vec *vec, int *pos)
 {
 	if (!v_insert_utils(vec, pos, "%", 1))

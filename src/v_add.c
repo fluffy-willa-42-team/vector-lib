@@ -13,21 +13,6 @@
 #include "vector_template.h"
 #include <stdarg.h>
 
-char	*ft_strchr(const char *s, int c);
-int		get_index(int index, int len);
-
-t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
-
-t_vec	*v_add_str_prct(t_vec *vec, int *pos);
-t_vec	*v_add_str_c(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_s(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_di(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_x(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_cap_x(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_prec(t_vec *vec, int *pos, va_list args, char **input);
-
 /*
 v_add    0 - 0	v_insert_elem	0
 		  \ /					 \   

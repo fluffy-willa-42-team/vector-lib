@@ -14,18 +14,6 @@
 #include <stdarg.h>
 #include <limits.h>
 
-char	*ft_strchr(const char *s, int c);
-
-t_vec	*v_insert_utils(t_vec *vec, int *pos, void *elem, size_t len);
-
-t_vec	*v_add_str_prct(t_vec *vec, int *pos);
-t_vec	*v_add_str_c(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_di(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_u(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_p(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_x(t_vec *vec, int *pos, va_list args);
-t_vec	*v_add_str_cap_x(t_vec *vec, int *pos, va_list args);
-
 t_vec	*v_add_str_s_prec(t_vec *vec, int *pos, va_list args, unsigned int prec)
 {
 	char	*str;

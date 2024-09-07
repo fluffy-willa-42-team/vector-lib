@@ -12,8 +12,6 @@
 
 #include "vector_template.h"
 
-t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length);
-
 t_vec	*v_cast(t_vec *vec, size_t new_size, int casting_function())
 {
 	const size_t	old_size = vec->size;

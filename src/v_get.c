@@ -12,8 +12,6 @@
 
 #include "vector_template.h"
 
-int	get_index(int index, int len);
-
 /**
  * @brief Returns the elem in the vector that exists.
  */

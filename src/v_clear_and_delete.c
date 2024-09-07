@@ -13,9 +13,6 @@
 #include "vector_template.h"
 #include <stdlib.h>
 
-void	*ft_memset(void *b, int c, size_t len);
-void	*v_getr(t_vec *vec, int index);
-
 /**
  * @brief Set all buffer to `\0`.
  */

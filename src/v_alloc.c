@@ -13,10 +13,6 @@
 #include "vector_template.h"
 #include <stdlib.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len);
-void	*ft_memset(void *b, int c, size_t len);
-size_t	ft_round_up(size_t nb, size_t base);
-
 t_vec	*v_alloc(t_vec *vec, t_alloc_opt option, size_t length)
 {
 	size_t	new_len;
